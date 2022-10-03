@@ -27,12 +27,13 @@ public class VerifyTheItemsInMobileListTest {
         String xperiaXpath = "//li[3]//a[@class='product-image']";
 
         //drive setup
+        LOGGER.info("Initialization chromedriver");
         WebDriver driver = WebDriverManager.chromedriver().create();
         driver.manage().window().maximize();
 
         LOGGER.info("1.Goto http://live.techpanda.org/");
         //1.Goto http://live.techpanda.org/
-        //driver.navigate().to(URL);
+        //driver.navigate().to(URL); <- this is less used in tests
         driver.get(URL); //correct version open urls
 
         LOGGER.info("2.Verify the title of the page");
@@ -54,8 +55,6 @@ public class VerifyTheItemsInMobileListTest {
 
         LOGGER.info("6.Verify all product are sorted by name");
         //6.Verify all product are sorted by name
-        //TODO collect to list names of the phones and check if the list is sorted
-
 
         List<String> phoneList = driver.findElements(By.xpath("//*[@class='product-image']")).stream()
                 .map(ele -> ele.getAttribute("title")).toList();

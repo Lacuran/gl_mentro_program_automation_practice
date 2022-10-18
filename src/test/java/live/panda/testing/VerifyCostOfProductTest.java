@@ -3,6 +3,7 @@ package live.panda.testing;
 import base.test.BaseTestSetup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -11,33 +12,41 @@ import static org.testng.Assert.assertEquals;
 
 public class VerifyCostOfProductTest extends BaseTestSetup {
 
-    @Test
-    public void verifyCostOfProductInListPageAndDetailsPageTest(){
+    @DataProvider (name = "smartphone")
+    public Object[][] dpMethod(){
+        return new Object[][] {
+                {"Sony Xperia", 1},
+                {"Samsung Galaxy", 3},
+                {"IPhone", 2}
+        };
+    }
+
+    @Test (dataProvider = "smartphone")
+    public void verifyCostOfProductInListPageAndDetailsPageTest(String phoneName, int priceNumber){
 
         //variables
+//        By listPagePrice = By.xpath("//*[@id='product-price-1']");
+//        By phoneCssSelector = By.xpath("//*[@title='Sony Xperia']")
+//        By detailsPriceInfoCss = By.xpath("//*[@class='price-info']");
+
+
         By mobileXpath = By.xpath("//*[text()='Mobile']");
-
-//        By listPageXperiaPrice = By.xpath("//*[@id='product-price-1']");
-        By listPageXperiaPrice = By.cssSelector("#product-price-1"); //css selector (to learn) # - is for the id
-
-//        By sonyXperiaXpath = By.xpath("//*[@title='Sony Xperia']");
-        By sonyXperiaXpath = By.cssSelector("[title='Sony Xperia']"); //css selector - [tag name='looked tag'] - specific tag
-
-//        By sonyXperiaDetailInfoXpath = By.xpath("//*[@class='price-info']");
-        By sonyXperiaDetailInfoXpath = By.cssSelector(".price-info"); //css selector . - css class
+        By listPagePrice = By.cssSelector("#product-price-" + priceNumber); //css selector (to learn) # - is for the id
+        By phoneCssSelector = By.cssSelector("[title='" + phoneName + "']"); //css selector - [tag name='looked tag'] - specific tag
+        By detailsPriceInfoCss = By.cssSelector("#product-price-" + priceNumber); //css selector . - css class
 
 
         LOGGER.info("2. Click on the 'MOBILE' menu");
         driver.findElement(mobileXpath).click();
 
         LOGGER.info("3. In the list of all mobile, read the cost of Sony XPeria mobile. Note this value.");
-        String xperiaCost = driver.findElement(listPageXperiaPrice).getText();
+        String xperiaCost = driver.findElement(listPagePrice).getText();
 
         LOGGER.info("4. Click on the Sony XPeria mobile");
-        driver.findElement(sonyXperiaXpath).click();
+        driver.findElement(phoneCssSelector).click();
 
         LOGGER.info("5. Read the cost of Sony XPeria mobile in detail page");
-        String xperiaCostInDetailPage = driver.findElement(sonyXperiaDetailInfoXpath).getText();
+        String xperiaCostInDetailPage = driver.findElement(detailsPriceInfoCss).getText();
 
         LOGGER.info("6. Compare value in Step 3 and Step 5");
         assertEquals(xperiaCost, xperiaCostInDetailPage,"Compare value in Step 3 and Step 5");

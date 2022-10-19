@@ -16,8 +16,8 @@ public class VerifyCostOfProductTest extends BaseTestSetup {
     public Object[][] dpMethod(){
         return new Object[][] {
                 {"Sony Xperia", 1},
-                {"Samsung Galaxy", 3},
-                {"IPhone", 2}
+                {"IPhone", 2},
+                {"Samsung Galaxy", 3}
         };
     }
 

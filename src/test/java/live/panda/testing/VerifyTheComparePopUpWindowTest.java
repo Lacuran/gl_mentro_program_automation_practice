@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Set;
+
+import static org.testng.Assert.assertEquals;
 
 public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
 
@@ -16,6 +19,8 @@ public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
         By mobileXpath = By.xpath("//*[text()='Mobile']");
         By addToCompareButton = By.cssSelector(".link-compare");
         By compareButton = By.cssSelector("[title='Compare']");
+        By closePopupWindowButton = By.cssSelector("[title='Close Window']");
+        By actualTitlePopupXpath = By.xpath("//*[@class='page-title title-buttons']/h1");
 
         LOGGER.info("2. Click on the 'MOBILE' menu");
         driver.findElement(mobileXpath).click();
@@ -29,10 +34,21 @@ public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
         LOGGER.info("4. Click on the 'COMPARE' button");
         driver.findElement(compareButton).click();
 
-        LOGGER.info("5. Verify the pop-up window and check that the products are reflected in it");
 
+        LOGGER.info("5. Verify the pop-up window and check that the products are reflected in it");
+        String mainWindowHandle = driver.getWindowHandle();
+        Set<String> allWindowHandles = driver.getWindowHandles();
+
+        for (String ChildWindow : allWindowHandles) {
+            if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
+                driver.switchTo().window(ChildWindow);
+            }
+        }
+        driver.manage().window().maximize();
+        assertEquals(driver.findElement(actualTitlePopupXpath).getText(), "COMPARE PRODUCTS", "Check title");
 
         LOGGER.info("6. Close the pop-up window");
+        driver.findElement(closePopupWindowButton).click();
 
     }
 }

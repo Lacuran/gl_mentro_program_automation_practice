@@ -21,6 +21,8 @@ public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
         By compareButton = By.cssSelector("[title='Compare']");
         By closePopupWindowButton = By.cssSelector("[title='Close Window']");
         By actualTitlePopupXpath = By.xpath("//*[@class='page-title title-buttons']/h1");
+        By samsungCss = By.cssSelector("[title='Samsung Galaxy']");
+        By xperiaCss = By.cssSelector("[title='Sony Xperia']");
 
         LOGGER.info("2. Click on the 'MOBILE' menu");
         driver.findElement(mobileXpath).click();
@@ -45,10 +47,17 @@ public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
             }
         }
         driver.manage().window().maximize();
+        List<WebElement> samsung = driver.findElements(samsungCss);
+        List<WebElement> sony = driver.findElements(xperiaCss);
+
         assertEquals(driver.findElement(actualTitlePopupXpath).getText(), "COMPARE PRODUCTS", "Check title");
+        assertEquals(samsung.get(1).getText(), "SAMSUNG GALAXY","Check samsung");
+        assertEquals(sony.get(1).getText(),"SONY XPERIA", "Check sony");
 
         LOGGER.info("6. Close the pop-up window");
         driver.findElement(closePopupWindowButton).click();
+        driver.switchTo().window(mainWindowHandle);
+        assertEquals(driver.getTitle(), "Mobile", "Check mobile title page");
 
     }
 }

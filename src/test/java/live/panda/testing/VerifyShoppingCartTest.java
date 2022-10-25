@@ -2,10 +2,7 @@ package live.panda.testing;
 
 import base.test.BaseTestSetup;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
@@ -21,16 +18,15 @@ public class VerifyShoppingCartTest extends BaseTestSetup {
         By addToCartCss = By.cssSelector(".btn-cart");
         By mobileQuantityInput = By.cssSelector("[title='Qty']");
         By updateButton = By.cssSelector("[title='Update']");
-        By errorMsgPopUp = By.cssSelector(".error-msg");
-        By emptyCartButton = By.cssSelector("#empty_cart_button");
-        By emptyCartMsg = By.cssSelector(".page-title");
+        By errorMsgPopUp = By.className("error-msg");
+        By emptyCartButton = By.id("empty_cart_button");
+        By emptyCartMsg = By.className("page-title");
 
         LOGGER.info("2. Click on the 'MOBILE' menu.");
         driver.findElement(mobileXpath).click();
 
         LOGGER.info("3. In the list of all mobile, click on the 'ADD TO CART' for Sony Xperia mobile.");
-        List<WebElement> buttonsAddToCart = driver.findElements(addToCartCss).stream().toList();
-        buttonsAddToCart.get(1).click();
+        driver.findElements(addToCartCss).stream().findAny().orElseThrow().click();
 
         LOGGER.info("4. Change 'QTY' value to 1000 and click on the 'UPDATE' button.");
         driver.findElement(mobileQuantityInput).clear();

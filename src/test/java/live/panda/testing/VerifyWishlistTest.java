@@ -9,7 +9,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
-public class VerifyEmailTest extends BaseTestSetup {
+public class VerifyWishlistTest extends BaseTestSetup {
 
     @Test
     public void VerifyAccountCreationInECommerceAndShareWishlistTest(){

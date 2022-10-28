@@ -14,7 +14,7 @@ public class VerifyWishlistTest extends BaseTestSetup {
     @Test
     public void VerifyAccountCreationInECommerceAndShareWishlistTest(){
         //variables
-        String addToEmail = String.valueOf(ThreadLocalRandom.current().nextInt(99999999));
+        String addToEmail = String.valueOf(ThreadLocalRandom.current().nextInt(999999999));
         By accountXPath = By.cssSelector("[data-target-element='#header-account']");
         By myAccountLink = RelativeLocator.with(By.cssSelector("[title='My Account']")).below(accountXPath);
         By createAccButton = By.cssSelector("[title='Create an Account']");

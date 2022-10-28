@@ -12,11 +12,11 @@ import java.util.stream.IntStream;
 public class VerifyWishlistTest extends BaseTestSetup {
 
     @Test
-    public void VerifyAccountCreationInECommerceAndShareWishlistTest(){
+    public void verifyAccountCreationInECommerceAndShareWishlistTest(){
         //variables
         String addToEmail = String.valueOf(ThreadLocalRandom.current().nextInt(999999999));
-        By accountXPath = By.cssSelector("[data-target-element='#header-account']");
-        By myAccountLink = RelativeLocator.with(By.cssSelector("[title='My Account']")).below(accountXPath);
+        By accountCssSelector = By.cssSelector("[data-target-element='#header-account']");
+        By myAccountLink = RelativeLocator.with(By.cssSelector("[title='My Account']")).below(accountCssSelector);
         By createAccButton = By.cssSelector("[title='Create an Account']");
         By submitAccButton = RelativeLocator.with(By.cssSelector("[title='Register']")).below(By.cssSelector(".button"));
         By[] registrationForm = {By.id("firstname"), By.id("middlename")
@@ -37,7 +37,7 @@ public class VerifyWishlistTest extends BaseTestSetup {
 
 
         LOGGER.info("2. Click on my account link");
-        driver.findElement(accountXPath).click();
+        driver.findElement(accountCssSelector).click();
         driver.findElement(myAccountLink).click();
 
         LOGGER.info("3. Click Create Account link and fill New User information except Email ID");

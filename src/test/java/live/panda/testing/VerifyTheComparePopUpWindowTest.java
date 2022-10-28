@@ -14,7 +14,7 @@ public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
     By addToCompareButton;
 
     @Test
-    public void VerifyThatYouAreAbleToCompareTwoProduct(){
+    public void verifyThatYouAreAbleToCompareTwoProduct(){
         //variables
         String[] phoneArray = {"IPhone", "Sony Xperia", "Samsung Galaxy"};
         By mobileXpath = By.xpath("//*[text()='Mobile']");

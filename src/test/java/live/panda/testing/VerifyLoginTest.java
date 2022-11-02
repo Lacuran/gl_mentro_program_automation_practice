@@ -121,6 +121,7 @@ public class VerifyLoginTest extends BaseTestSetup {
         By saveButtonCssSelector = By.cssSelector("[title='Save']");
         String URL = "http://live.techpanda.org/";
 
+        LOGGER.info("Restoring account information");
         LOGGER.info("WebDriver Initialization");
         driver = WebDriverManager.chromedriver().create();
         driver.manage().window().maximize();

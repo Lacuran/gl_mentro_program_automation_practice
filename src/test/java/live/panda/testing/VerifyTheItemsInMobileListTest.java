@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
 public class VerifyTheItemsInMobileListTest {
     final static Logger LOGGER = Logger.getLogger(VerifyTheItemsInMobileListTest.class);
 
-    @Test
+    @Test(description = "1")
     public void verifyItemInTheMobileListPageCanBeShortedByNameTest(){
         //variables
         final String URL = "http://live.techpanda.org/"; //names with final in CAPITAL LETTERS

@@ -8,7 +8,7 @@ import static org.testng.Assert.assertEquals;
 
 public class VerifyShoppingCartTest extends BaseTestSetup {
 
-    @Test
+    @Test(description = "3")
     public void verifyThatYouCannotAddMoreProductInCartThanTheProductAvailableInTheStore(){
         //variables
         String expectedErrorMsg = "Some of the products cannot be ordered in requested quantity.";

@@ -5,13 +5,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.locators.RelativeLocator;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import utility.User;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 public class VerifyWishlistTest extends BaseTestSetup {
 
-    @Test
+    @Test(description = "5")
     public void verifyAccountCreationInECommerceAndShareWishlistTest(){
         //variables
         String addToEmail = String.valueOf(ThreadLocalRandom.current().nextInt(999999999));
@@ -19,12 +20,16 @@ public class VerifyWishlistTest extends BaseTestSetup {
         By myAccountLink = RelativeLocator.with(By.cssSelector("[title='My Account']")).below(accountCssSelector);
         By createAccButton = By.cssSelector("[title='Create an Account']");
         By submitAccButton = RelativeLocator.with(By.cssSelector("[title='Register']")).below(By.cssSelector(".button"));
+
         By[] registrationForm = {By.id("firstname"), By.id("middlename")
                 , By.id("lastname"), By.id("email_address")
                 , By.id("password"), By.id("confirmation")};
-        String[] registrationData = {"Kornel", "Maybe"
+        User user = new User("Kornel", "Maybe"
                 , "Test", "lenrok.test" + addToEmail +"@gmail.com"
-                , "test123", "test123"};
+                , "test123");
+        String[] registrationData = {user.getName() , user.getMiddleName(), user.getLastName()
+                , user.getEmail(), user.getPassword(), user.getConfirmation()};
+
         By registrationDoneText = By.cssSelector(".success-msg");
         By tvXpath = By.xpath("//*[text()='TV']");
         By addToWishListButton = RelativeLocator.with(By.cssSelector(".link-wishlist"))

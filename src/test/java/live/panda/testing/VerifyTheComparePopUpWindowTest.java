@@ -13,7 +13,7 @@ import java.util.List;
 public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
     By addToCompareButton;
 
-    @Test
+    @Test(description = "4")
     public void verifyThatYouAreAbleToCompareTwoProduct(){
         //variables
         String[] phoneArray = {"IPhone", "Sony Xperia", "Samsung Galaxy"};

@@ -19,7 +19,7 @@ public class VerifyCostOfProductTest extends BaseTestSetup {
         };
     }
 
-    @Test (dataProvider = "smartphone")
+    @Test (dataProvider = "smartphone", description = "2")
     public void verifyCostOfProductInListPageAndDetailsPageTest(String phoneName){
 
         //variables

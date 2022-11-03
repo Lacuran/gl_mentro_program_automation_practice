@@ -27,7 +27,7 @@ public class VerifyWishlistTest extends BaseTestSetup {
         User user = new User("Kornel", "Maybe"
                 , "Test", "lenrok.test" + addToEmail +"@gmail.com"
                 , "test123");
-        String[] registrationData = {user.getName() , user.getMiddleName(), user.getLastName()
+        String[] registrationData = {user.getFirstName() , user.getMiddleName(), user.getLastName()
                 , user.getEmail(), user.getPassword(), user.getConfirmation()};
 
         By registrationDoneText = By.cssSelector(".success-msg");

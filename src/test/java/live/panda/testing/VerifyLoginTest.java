@@ -61,7 +61,7 @@ public class VerifyLoginTest extends BaseTestSetup {
         //variables
         By accInfoXPath = By.xpath("//a[contains(text(), 'Account Information')]");
         By[] editInfoID = {By.id("firstname"), By.id("middlename"), By.id("lastname"), By.id("current_password")};
-        String[] editInfoData = {user2.getName(), user2.getMiddleName(), user2.getLastName(), user2.getPassword()};
+        String[] editInfoData = {user2.getFirstName(), user2.getMiddleName(), user2.getLastName(), user2.getPassword()};
         By saveButtonCssSelector = By.cssSelector("[title='Save']");
         By successMsgCssSelector = By.cssSelector(".success-msg");
         String expectedSuccessMsg = "The account information has been saved.";
@@ -84,11 +84,11 @@ public class VerifyLoginTest extends BaseTestSetup {
 
     @BeforeGroups("login")
     public void setUpUserInformation(){
-        //This aftergroups test restore account information
+        //This BeforeGroup test restore account information
         user1.setEmail("lenrok.test1@gmail.com");
         By accInfoXPath = By.xpath("//a[contains(text(), 'Account Information')]");
         By[] editInfoID = {By.id("firstname"), By.id("middlename"), By.id("lastname"), By.id("current_password")};
-        String[] editInfoData = {user1.getName(), user1.getMiddleName(), user1.getLastName(), user1.getPassword()};
+        String[] editInfoData = {user1.getFirstName(), user1.getMiddleName(), user1.getLastName(), user1.getPassword()};
         By saveButtonCssSelector = By.cssSelector("[title='Save']");
 
         LOGGER.info("Preparing account information");

@@ -2,10 +2,13 @@ package utility;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+@Getter @Setter
 public class User {
     private String firstName;
     private String middleName;
@@ -14,9 +17,9 @@ public class User {
     private String password;
     private String confirmation;
 
-    public User(String firstName, String middlename, String lastName, String email, String password) {
+    public User(String firstName, String middleName, String lastName, String email, String password) {
         this.firstName = firstName;
-        this.middleName = middlename;
+        this.middleName = middleName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
@@ -32,54 +35,4 @@ public class User {
             throw new RuntimeException(e);
         }
     }
-
-    public String getName() {
-        return firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getConfirmation() {
-        return confirmation;
-    }
-
-    public void setName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setConfirmation(String confirmation) {
-        this.confirmation = confirmation;
-    }
-
-
 }

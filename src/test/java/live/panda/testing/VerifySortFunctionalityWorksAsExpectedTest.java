@@ -2,6 +2,7 @@ package live.panda.testing;
 
 import base.test.BaseTestSetup;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -28,7 +29,11 @@ public class VerifySortFunctionalityWorksAsExpectedTest extends BaseTestSetup {
         List<String> searchResult = driver.findElements(By.xpath("//*[@class='product-image']")).stream()
                 .map(ele -> ele.getAttribute("title"))
                 .toList();
+        List<String> priceResult = driver.findElements(By.xpath("//*[@class='price']")).stream()
+                .map(WebElement::getText)
+                .toList();
         LOGGER.info(searchResult);
+        LOGGER.info(priceResult);
 
         LOGGER.info("5. Again, In Price field enter range 151-1000. Click Search");
         driver.findElement(advanceSearchLink).click();
@@ -40,6 +45,11 @@ public class VerifySortFunctionalityWorksAsExpectedTest extends BaseTestSetup {
         List<String> searchResult2 = driver.findElements(By.xpath("//*[@class='product-image']")).stream()
                 .map(ele -> ele.getAttribute("title"))
                 .toList();
+        List<String> priceResult2 = driver.findElements(By.xpath("//*[@class='price']")).stream()
+                .map(WebElement::getText)
+                .toList();
+
         LOGGER.info(searchResult2);
+        LOGGER.info(priceResult2);
     }
 }

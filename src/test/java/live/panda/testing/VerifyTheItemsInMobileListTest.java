@@ -22,9 +22,6 @@ public class VerifyTheItemsInMobileListTest {
         By mobileXpath = By.xpath("//*[text()='Mobile']"); // no string but by element
         String mobileExpectedTitle = "Mobile";
         By selectByNameDropdownXpath = By.xpath("(//*[@title='Sort By'])[1]");
-        String iPhoneXpath = "//li[1]//a[@class='product-image']";
-        String samsungXpath = "//li[2]//a[@class='product-image']";
-        String xperiaXpath = "//li[3]//a[@class='product-image']";
 
         //drive setup
         LOGGER.info("Initialization chromedriver");
@@ -32,29 +29,22 @@ public class VerifyTheItemsInMobileListTest {
         driver.manage().window().maximize();
 
         LOGGER.info("1.Goto http://live.techpanda.org/");
-        //1.Goto http://live.techpanda.org/
-        //driver.navigate().to(URL); <- this is less used in tests
         driver.get(URL); //correct version open urls
 
         LOGGER.info("2.Verify the title of the page");
-        //2.Verify the title of the page
         assertEquals(driver.getTitle(), expectedTitle);
 
         LOGGER.info("3.Click on Mobile menu");
-        //3.Click on Mobile menu
         driver.findElement(mobileXpath).click();
 
         LOGGER.info("4.Verify the tittle of the page");
-        //4.Verify the tittle of the page
         assertEquals(driver.getTitle(), mobileExpectedTitle);
 
         LOGGER.info("5.In the list of all mobile, select SORT BY dropdown as name");
-        //5.In the list of all mobile, select SORT BY dropdown as name
         Select selectByName = new Select(driver.findElement(selectByNameDropdownXpath));
         selectByName.selectByVisibleText("Name");
 
         LOGGER.info("6.Verify all product are sorted by name");
-        //6.Verify all product are sorted by name
 
         List<String> phoneList = driver.findElements(By.xpath("//*[@class='product-image']")).stream()
                 .map(ele -> ele.getAttribute("title")).toList();

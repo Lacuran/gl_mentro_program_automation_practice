@@ -23,19 +23,24 @@ public class VerifyChangeOrReorderPreviouslyAddedProductTest extends BaseTestSet
         Faker faker = new Faker();
         User user = new User("Kornel", "Maybe"
                 , "Test", "lenrok.test1@gmail.com", "test123");
+        //step 2
         By accountCssSelector = By.cssSelector("[data-target-element='#header-account']");
         By myAccountCssSelector = RelativeLocator.with(By.cssSelector("[title='My Account']"))
                 .below(accountCssSelector);
+        //step 3
         By[] loginID = {By.id("email"), By.id("pass")};
         String[] loginData ={user.getEmail(), user.getPassword()};
         By loginButton = By.id("send2");
+        //step 4
         By reorderButton = RelativeLocator
                 .with(By.cssSelector(".link-reorder"))
                 .below(By.cssSelector(".first.odd"));
         By quantityField = By.cssSelector("[title='Qty']");
         By updateButton = By.cssSelector("[title='Update']");
+        //step 5
         By grandTotalPriceXpath = By.xpath("//*[@id='shopping-cart-totals-table']/tfoot/tr/td[2]/strong/span");
         String expectedGrandTotalPrice = "$6,150.00";
+        //step 6
         By checkoutButton = RelativeLocator
                 .with(By.cssSelector(".btn-checkout"))
                 .below(By.cssSelector(".top"));
@@ -44,11 +49,18 @@ public class VerifyChangeOrReorderPreviouslyAddedProductTest extends BaseTestSet
                 , By.id("billing:lastname"), By.id("billing:street1")
                 , By.id("billing:city"), By.id("billing:postcode")
                 , By.id("billing:telephone")};
+        String streetAddress = faker.address().streetAddress();
+        String city = faker.address().cityName();
+        String zipcode = faker.address().zipCode();
+        String telephone = faker.phoneNumber().phoneNumber();
+        String[] shippingData = {user.getFirstName(), user.getMiddleName()
+                , user.getLastName(), streetAddress, city, zipcode, telephone};
         By continueButtonBillingInformation = By.xpath("//*[@id='billing-buttons-container']/button");
         By continueButtonShippingMethod = By.xpath("//*[@id='shipping-method-buttons-container']/button");
         By continueButtonPaymentInformation = By.xpath("//*[@id='payment-buttons-container']/button");
         By checkMoneyRadioButton = By.id("p_method_checkmo");
         By placeOrderButton = By.cssSelector("[title='Place Order']");
+        //step 7
         String expectedOrderMSG = "YOUR ORDER HAS BEEN RECEIVED.";
         By orderMSG = By.cssSelector(".page-title");
 
@@ -75,12 +87,6 @@ public class VerifyChangeOrReorderPreviouslyAddedProductTest extends BaseTestSet
 
         Select newAddressSelect = new Select(driver.findElement(By.id("billing-address-select")));
         Select shippingCountry = new Select(driver.findElement(countrySelectID));
-        String streetAddress = faker.address().streetAddress();
-        String city = faker.address().cityName();
-        String zipcode = faker.address().zipCode();
-        String telephone = faker.phoneNumber().phoneNumber();
-        String[] shippingData = {user.getFirstName(), user.getMiddleName()
-                , user.getLastName(), streetAddress, city, zipcode, telephone};
 
         newAddressSelect.selectByVisibleText("New Address");
         IntStream.range(0, shippingData.length)

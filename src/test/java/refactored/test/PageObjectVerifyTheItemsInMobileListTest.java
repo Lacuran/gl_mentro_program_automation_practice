@@ -1,7 +1,6 @@
 package refactored.test;
 
 import base.test.BaseTestSetup;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import panda.pages.MobilePage;
 import panda.pages.PandaHomePage;
@@ -13,8 +12,8 @@ public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
     @Test(description = "1")
     public void verifyItemInTheMobileListPageCanBeShortedByNameTest(){
         //variables
-        PandaHomePage homePage = PageFactory.initElements(driver, PandaHomePage.class);
-        MobilePage mobilePage = PageFactory.initElements(driver, MobilePage.class);
+        PandaHomePage homePage = new PandaHomePage(driver);
+        MobilePage mobilePage = new MobilePage(driver);
         String expectedTitle = "Home page";
         String mobileExpectedTitle = "Mobile";
 

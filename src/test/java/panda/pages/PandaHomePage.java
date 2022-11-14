@@ -11,11 +11,12 @@ public class PandaHomePage {
         this.driver = driver;
     }
 
-    public void clickMobileLink(){
+    public MobilePage clickMobileLink(){
         driver.findElement(mobileLink).click();
+        return new MobilePage(driver);
     }
 
-    public String getPageTitle(){
+    public String getHomePageTitle(){
         return driver.getTitle();
     }
 }

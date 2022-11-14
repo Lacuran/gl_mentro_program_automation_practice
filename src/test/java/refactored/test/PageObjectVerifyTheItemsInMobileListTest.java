@@ -18,13 +18,13 @@ public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
         String mobileExpectedTitle = "Mobile";
 
         LOGGER.info("2.Verify the title of the page");
-        assertEquals(homePage.getPageTitle(), expectedTitle);
+        assertEquals(homePage.getHomePageTitle(), expectedTitle);
 
         LOGGER.info("3.Click on Mobile menu");
         homePage.clickMobileLink();
 
         LOGGER.info("4.Verify the tittle of the page");
-        assertEquals(mobilePage.getPageTitle(), mobileExpectedTitle);
+        assertEquals(mobilePage.getMobilePageTitle(), mobileExpectedTitle);
 
         LOGGER.info("5.In the list of all mobile, select SORT BY dropdown as name");
         mobilePage.clickSelectByNameDropdown();

@@ -10,7 +10,7 @@ import static org.testng.Assert.assertEquals;
 public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
 
     @Test(description = "1")
-    public void verifyItemInTheMobileListPageCanBeShortedByNameTest(){
+    public void verifyItemInTheMobileListPageCanBeShortedByNameTest() {
         //variables
         PandaHomePage homePage = new PandaHomePage(driver);
         MobilePage mobilePage = new MobilePage(driver);

@@ -4,11 +4,10 @@ import base.test.BaseTestSetup;
 import org.testng.annotations.Test;
 import panda.pages.PandaHomePage;
 
-import static org.testng.Assert.assertEquals;
 public class PageObjectVerifyTheComparePopUpWindowTest extends BaseTestSetup {
 
     @Test(description = "4")
-    public void verifyThatYouAreAbleToCompareTwoProduct(){
+    public void verifyThatYouAreAbleToCompareTwoProduct() {
         //variables
         String[] phoneArray = {"IPhone", "Sony Xperia", "Samsung Galaxy"};
         String expectedPopupTitle = "COMPARE PRODUCTS";
@@ -38,7 +37,6 @@ public class PageObjectVerifyTheComparePopUpWindowTest extends BaseTestSetup {
         LOGGER.info("6. Close the pop-up window");
 
     }
-
 
 
 }

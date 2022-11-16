@@ -14,11 +14,6 @@ public class ComparePage {
     MobilePage mobilePage;
     By actualTitlePopupXpath = By.xpath("//*[@class='page-title title-buttons']/h1");
     By closePopupWindowButton = By.cssSelector("[title='Close Window']");
-    List<WebElement> phoneNamesInThePopup = driver.findElements(By.className("product-name"));
-    List<String> phoneList = phoneNamesInThePopup.stream()
-            .map(element -> element.getText())
-            .sorted()
-            .toList();
     SoftAssert softAssert = new SoftAssert();
     public ComparePage(WebDriver driver) {
         this.driver = driver;
@@ -35,9 +30,18 @@ public class ComparePage {
     }
 
     public ComparePage assertPhonesOnPopUp(String[] expectedArrayPhoneList, String assertionErrorMessage){
-        softAssert.assertEquals(phoneList, Arrays.stream(expectedArrayPhoneList).map(ex -> ex.toUpperCase()).sorted().toList(), assertionErrorMessage);
+        softAssert.assertEquals(getPhoneList(), Arrays.stream(expectedArrayPhoneList).map(ex -> ex.toUpperCase()).sorted().toList(), assertionErrorMessage);
         softAssert.assertAll();
         return this;
+    }
+
+    private List<String> getPhoneList() {
+        List<WebElement> phoneNamesInThePopup = driver.findElements(By.cssSelector(".product-name"));
+        List<String> phoneList = phoneNamesInThePopup.stream()
+                .map(element -> element.getText())
+                .sorted()
+                .toList();
+        return phoneList;
     }
 
     public String getPopUpPageTitle(){

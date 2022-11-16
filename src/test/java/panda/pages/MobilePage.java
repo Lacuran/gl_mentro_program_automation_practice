@@ -13,6 +13,7 @@ import static org.testng.Assert.assertEquals;
 
 public class MobilePage {
     WebDriver driver;
+    ComparePage comparePage;
     String mainWindowHandle;
     String popup;
     By selectByNameDropdown = By.xpath("(//*[@title='Sort By'])[1]");

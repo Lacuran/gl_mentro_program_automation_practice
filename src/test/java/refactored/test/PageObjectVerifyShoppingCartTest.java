@@ -9,7 +9,7 @@ import panda.pages.PandaHomePage;
 public class PageObjectVerifyShoppingCartTest extends BaseTestSetup {
 
     @Test(description = "3")
-    public void verifyThatYouCannotAddMoreProductInCartThanTheProductAvailableInTheStore(){
+    public void verifyThatYouCannotAddMoreProductInCartThanTheProductAvailableInTheStore() {
         //variables
         PandaHomePage homePage = new PandaHomePage(driver);
         String expectedErrorMsg = "Some of the products cannot be ordered in requested quantity.";

@@ -18,24 +18,24 @@ public class ShoppingCartPage {
         this.driver = driver;
     }
 
-    public ShoppingCartPage changeQtyAndClickUpdate(String Quantity){
+    public ShoppingCartPage changeQtyAndClickUpdate(String Quantity) {
         driver.findElement(quantityInput).clear();
         driver.findElement(quantityInput).sendKeys(Quantity);
         driver.findElement(updateButton).click();
         return this;
     }
 
-    public ShoppingCartPage assertErrorMSG(String expectedMSG, String assertionErrorMessage){
+    public ShoppingCartPage assertErrorMSG(String expectedMSG, String assertionErrorMessage) {
         softAssert.assertEquals(expectedMSG, driver.findElement(errorMsgPopUp).getText(), assertionErrorMessage);
         return this;
     }
 
-    public ShoppingCartPage emptyShoppingCart(){
+    public ShoppingCartPage emptyShoppingCart() {
         driver.findElement(emptyCartButton).click();
         return this;
     }
 
-    public ShoppingCartPage verifyTheCartIsEmpty(String expectedMSG, String assertionErrorMessage){
+    public ShoppingCartPage verifyTheCartIsEmpty(String expectedMSG, String assertionErrorMessage) {
         softAssert.assertEquals(expectedMSG, driver.findElement(emptyCartMsg).getText(), assertionErrorMessage);
         softAssert.assertAll();
         return this;

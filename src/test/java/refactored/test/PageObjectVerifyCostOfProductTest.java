@@ -4,9 +4,7 @@ import base.test.BaseTestSetup;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import panda.pages.MobilePage;
 import panda.pages.PandaHomePage;
-import utility.PhoneTypes;
 
 import static org.testng.Assert.assertEquals;
 @Slf4j
@@ -22,11 +20,8 @@ public class PageObjectVerifyCostOfProductTest extends BaseTestSetup {
     }
 
     @Test(dataProvider = "smartphone", description = "2")
-    public void verifyCostOfProductInListPageAndDetailsPageTest (String phoneName){
+    public void verifyCostOfProductInListPageAndDetailsPageTest(String phoneName) {
         PandaHomePage homePage = new PandaHomePage(driver);
-        MobilePage mobilePage = new MobilePage(driver);
-        PhoneTypes phoneTypes = new PhoneTypes(driver);
-
 
 
         log.info("2. Click on the 'MOBILE' menu");
@@ -40,14 +35,11 @@ public class PageObjectVerifyCostOfProductTest extends BaseTestSetup {
 
         log.info("5. Read the cost of Sony XPeria mobile in detail page");
         String phoneCostOnMobileDetailsPage = phoneTypes.getPhoneCostOnPhonePage(phoneName);
-
+       
         log.info("6. Compare value in Step 3 and Step 5");
         assertEquals(phoneCostOnMobilePage, phoneCostOnMobileDetailsPage, "Compare value in Step 3 and Step 5");
 
-
-
     }
-
 
 
 }

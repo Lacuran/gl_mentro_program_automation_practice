@@ -5,11 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
 import panda.pages.PandaHomePage;
 
+
 @Slf4j
 public class PageObjectVerifyTheComparePopUpWindowTest extends BaseTestSetup {
 
     @Test(description = "4")
-    public void verifyThatYouAreAbleToCompareTwoProduct(){
+    public void verifyThatYouAreAbleToCompareTwoProduct() {
         //variables
         String[] phoneArray = {"IPhone", "Sony Xperia", "Samsung Galaxy"};
         String expectedPopupTitle = "COMPARE PRODUCTS";
@@ -39,7 +40,6 @@ public class PageObjectVerifyTheComparePopUpWindowTest extends BaseTestSetup {
         log.info("6. Close the pop-up window");
 
     }
-
 
 
 }

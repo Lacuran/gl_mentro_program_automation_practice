@@ -44,7 +44,7 @@ public class PageObjectVerifyWishlistTest extends BaseTestSetup {
 
         log.info("5. Verify Registration is done");
 
-        log.info("6. Go to TV men");
+        log.info("6. Go to TV menu");
 
         log.info("7. Add product in your wish list");
 

@@ -28,14 +28,14 @@ public class PageObjectVerifyCostOfProductTest extends BaseTestSetup {
         homePage.clickMobileLink();
 
         log.info("3. In the list of all mobile, read the cost of Sony XPeria mobile. Note this value.");
-        String phoneCostOnMobilePage = mobilePage.getPhoneCostString(phoneName);
+        String phoneCostOnMobilePage = homePage.getMobilePage().getPhoneCostString(phoneName);
 
         log.info("4. Click on the Sony XPeria mobile");
-        mobilePage.clickPhoneCssSelector(phoneName);
+        homePage.getMobilePage().clickPhoneCssSelector(phoneName);
 
         log.info("5. Read the cost of Sony XPeria mobile in detail page");
-        String phoneCostOnMobileDetailsPage = phoneTypes.getPhoneCostOnPhonePage(phoneName);
-       
+        String phoneCostOnMobileDetailsPage = homePage.getMobilePage().getPhoneTypes().getPhoneCostOnPhonePage(phoneName);
+
         log.info("6. Compare value in Step 3 and Step 5");
         assertEquals(phoneCostOnMobilePage, phoneCostOnMobileDetailsPage, "Compare value in Step 3 and Step 5");
 

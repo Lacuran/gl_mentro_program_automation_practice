@@ -1,18 +1,18 @@
 package live.panda.testing;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
-import org.testng.log4testng.Logger;
 
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
+@Slf4j
 public class VerifyTheItemsInMobileListTest {
-    final static Logger LOGGER = Logger.getLogger(VerifyTheItemsInMobileListTest.class);
 
     @Test(description = "1")
     public void verifyItemInTheMobileListPageCanBeShortedByNameTest(){
@@ -24,27 +24,27 @@ public class VerifyTheItemsInMobileListTest {
         By selectByNameDropdownXpath = By.xpath("(//*[@title='Sort By'])[1]");
 
         //drive setup
-        LOGGER.info("Initialization chromedriver");
+        log.info("Initialization chromedriver");
         WebDriver driver = WebDriverManager.chromedriver().create();
         driver.manage().window().maximize();
 
-        LOGGER.info("1.Goto http://live.techpanda.org/");
+        log.info("1.Goto http://live.techpanda.org/");
         driver.get(URL); //correct version open urls
 
-        LOGGER.info("2.Verify the title of the page");
+        log.info("2.Verify the title of the page");
         assertEquals(driver.getTitle(), expectedTitle);
 
-        LOGGER.info("3.Click on Mobile menu");
+        log.info("3.Click on Mobile menu");
         driver.findElement(mobileXpath).click();
 
-        LOGGER.info("4.Verify the tittle of the page");
+        log.info("4.Verify the tittle of the page");
         assertEquals(driver.getTitle(), mobileExpectedTitle);
 
-        LOGGER.info("5.In the list of all mobile, select SORT BY dropdown as name");
+        log.info("5.In the list of all mobile, select SORT BY dropdown as name");
         Select selectByName = new Select(driver.findElement(selectByNameDropdownXpath));
         selectByName.selectByVisibleText("Name");
 
-        LOGGER.info("6.Verify all product are sorted by name");
+        log.info("6.Verify all product are sorted by name");
 
         List<String> phoneList = driver.findElements(By.xpath("//*[@class='product-image']")).stream()
                 .map(ele -> ele.getAttribute("title")).toList();

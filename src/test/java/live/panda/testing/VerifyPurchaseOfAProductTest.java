@@ -2,6 +2,7 @@ package live.panda.testing;
 
 import base.test.BaseTestSetup;
 import com.github.javafaker.Faker;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ import utility.User;
 import java.time.Duration;
 import java.util.stream.IntStream;
 
+@Slf4j
 public class VerifyPurchaseOfAProductTest extends BaseTestSetup {
     User user = new User("Kornel", "Maybe"
             , "Test", "lenrok.test1@gmail.com", "test123");
@@ -35,10 +37,10 @@ public class VerifyPurchaseOfAProductTest extends BaseTestSetup {
         setUp();
         loginSteps();
 
-        LOGGER.info("4. Clicking on TV link");
+        log.info("4. Clicking on TV link");
         driver.findElement(tvXpath).click();
 
-        LOGGER.info("5. Adding TV to Wishlist");
+        log.info("5. Adding TV to Wishlist");
         driver.findElement(addToWishListButton).click();
         cleanUp();
 
@@ -101,35 +103,35 @@ public class VerifyPurchaseOfAProductTest extends BaseTestSetup {
 
         loginSteps();
 
-        LOGGER.info("4. Click on 'MY WISHLIST' link");
+        log.info("4. Click on 'MY WISHLIST' link");
         driver.findElement(myWishlistSelector).click();
 
-        LOGGER.info("5. In the next page, Click 'ADD TO CART' link");
+        log.info("5. In the next page, Click 'ADD TO CART' link");
         driver.findElement(addToCartCssSelector).click();
 
-        LOGGER.info("6. Enter shipping information");
+        log.info("6. Enter shipping information");
         Select countrySelect = new Select(driver.findElement(By.id("country")));
         countrySelect.selectByValue("PL");
         driver.findElement(regionCart).sendKeys("Malopolska");
         driver.findElement(postcodeCart).sendKeys(faker.address().zipCode());
 
-        LOGGER.info("7. Click Estimate");
+        log.info("7. Click Estimate");
         driver.findElement(estimateButton).click();
 
-        LOGGER.info("8. Verify Shipping cost generated");
+        log.info("8. Verify Shipping cost generated");
         softAssert.assertEquals(driver.findElement(shippingPrice).getText(), expectedPrice, "Check shipping price");
 
-        LOGGER.info("9. Select Shipping Cost, Update Total");
+        log.info("9. Select Shipping Cost, Update Total");
         driver.findElement(radioButton).click();
         driver.findElement(updateTotalButton).click();
 
-        LOGGER.info("10. Verify shipping cost is added to total");
+        log.info("10. Verify shipping cost is added to total");
         softAssert.assertEquals(driver.findElement(totalPriceXPath).getText(), expectedTotalPrice, "Check total price");
 
-        LOGGER.info("11. Click 'Proceed to Checkout'");
+        log.info("11. Click 'Proceed to Checkout'");
         driver.findElement(checkoutButton).click();
 
-        LOGGER.info("12. Enter Billing Information");
+        log.info("12. Enter Billing Information");
         Select newAddressSelect = new Select(driver.findElement(By.id("billing-address-select")));
         Select shippingCountry = new Select(driver.findElement(countrySelectID));
 
@@ -140,24 +142,24 @@ public class VerifyPurchaseOfAProductTest extends BaseTestSetup {
                 .forEach(i -> driver.findElement(shippingID[i]).sendKeys(shippingData[i]));
         shippingCountry.selectByValue("PL");
 
-        LOGGER.info("13. In Billing Information, Click Continue");
+        log.info("13. In Billing Information, Click Continue");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.findElement(continueButtonBillingInformation).click();
 
-        LOGGER.info("14. In Shipping Method, Click Continue");
+        log.info("14. In Shipping Method, Click Continue");
         wait.until(ExpectedConditions.visibilityOfElementLocated(continueButtonShippingMethod));
         driver.findElement(continueButtonShippingMethod).click();
 
-        LOGGER.info("15. In Payment Information select 'Check/Money Order' radio button, Click Continue'");
+        log.info("15. In Payment Information select 'Check/Money Order' radio button, Click Continue'");
         wait.until(ExpectedConditions.visibilityOfElementLocated(checkMoneyRadioButton));
         driver.findElement(checkMoneyRadioButton).click();
         driver.findElement(continueButtonPaymentInformation).click();
 
-        LOGGER.info("16. Click 'Place ORDER' button");
+        log.info("16. Click 'Place ORDER' button");
         wait.until(ExpectedConditions.visibilityOfElementLocated(placeOrderButton));
         driver.findElement(placeOrderButton).click();
 
-        LOGGER.info("17. Verify Order is generated. Note the order number");
+        log.info("17. Verify Order is generated. Note the order number");
         wait.until(ExpectedConditions.titleIs("Magento Commerce"));
         softAssert.assertEquals(driver.findElement(orderMSG).getText(), expectedOrderMSG, "Check order msg");
         softAssert.assertAll();
@@ -165,10 +167,10 @@ public class VerifyPurchaseOfAProductTest extends BaseTestSetup {
     }
 
     private void loginSteps() {
-        LOGGER.info("2. Click on my account link");
+        log.info("2. Click on my account link");
         driver.findElement(myAccountCssSelector).click();
 
-        LOGGER.info("3. Login in application using previously created credentials");
+        log.info("3. Login in application using previously created credentials");
         IntStream.range(0, loginData.length)
                 .forEach(i -> driver.findElement(loginID[i]).sendKeys(loginData[i]));
         driver.findElement(loginButton).click();

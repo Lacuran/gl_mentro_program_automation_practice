@@ -2,6 +2,7 @@ package live.panda.testing;
 
 import base.test.BaseTestSetup;
 import com.github.javafaker.Faker;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +15,7 @@ import utility.User;
 import java.time.Duration;
 import java.util.stream.IntStream;
 
+@Slf4j
 public class VerifyChangeOrReorderPreviouslyAddedProductTest extends BaseTestSetup {
 
     @Test(description = "8")
@@ -64,24 +66,24 @@ public class VerifyChangeOrReorderPreviouslyAddedProductTest extends BaseTestSet
         String expectedOrderMSG = "YOUR ORDER HAS BEEN RECEIVED.";
         By orderMSG = By.cssSelector(".page-title");
 
-        LOGGER.info("2. Click on my account link");
+        log.info("2. Click on my account link");
         driver.findElement(myAccountCssSelector).click();
 
-        LOGGER.info("3. Login in application using previously created credentials");
+        log.info("3. Login in application using previously created credentials");
         IntStream.range(0, loginData.length)
                 .forEach(i -> driver.findElement(loginID[i]).sendKeys(loginData[i]));
         driver.findElement(loginButton).click();
 
-        LOGGER.info("4. Click on 'REORDER' Link, change QTY(10) & click Update");
+        log.info("4. Click on 'REORDER' Link, change QTY(10) & click Update");
         driver.findElement(reorderButton).click();
         driver.findElement(quantityField).clear();
         driver.findElement(quantityField).sendKeys("10");
         driver.findElement(updateButton).click();
 
-        LOGGER.info("5. Verify Grand Total is changed");
+        log.info("5. Verify Grand Total is changed");
         softAssert.assertEquals(driver.findElement(grandTotalPriceXpath).getText(), expectedGrandTotalPrice, "Check grand total price");
 
-        LOGGER.info("6. Complete Billing & Shipping Information");
+        log.info("6. Complete Billing & Shipping Information");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         driver.findElement(checkoutButton).click();
 
@@ -95,23 +97,23 @@ public class VerifyChangeOrReorderPreviouslyAddedProductTest extends BaseTestSet
                 .forEach(i -> driver.findElement(shippingID[i]).sendKeys(shippingData[i]));
         shippingCountry.selectByValue("PL");
 
-        LOGGER.info("Click on the Continue Button");
+        log.info("Click on the Continue Button");
         driver.findElement(continueButtonBillingInformation).click();
 
-        LOGGER.info("Click on the continue button in Shipping method");
+        log.info("Click on the continue button in Shipping method");
         wait.until(ExpectedConditions.visibilityOfElementLocated(continueButtonShippingMethod));
         driver.findElement(continueButtonShippingMethod).click();
 
-        LOGGER.info("Click on the Check / Money radio button and clicking on the continue button");
+        log.info("Click on the Check / Money radio button and clicking on the continue button");
         wait.until(ExpectedConditions.visibilityOfElementLocated(checkMoneyRadioButton));
         driver.findElement(checkMoneyRadioButton).click();
         driver.findElement(continueButtonPaymentInformation).click();
 
-        LOGGER.info("Click on the Place order button");
+        log.info("Click on the Place order button");
         wait.until(ExpectedConditions.visibilityOfElementLocated(placeOrderButton));
         driver.findElement(placeOrderButton).click();
 
-        LOGGER.info("7. Verify order is generated and note the order number");
+        log.info("7. Verify order is generated and note the order number");
         wait.until(ExpectedConditions.titleIs("Magento Commerce"));
         softAssert.assertEquals(driver.findElement(orderMSG).getText(), expectedOrderMSG, "Check order msg");
         softAssert.assertAll();

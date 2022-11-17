@@ -1,6 +1,7 @@
 package live.panda.testing;
 
 import base.test.BaseTestSetup;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ import java.util.stream.IntStream;
 
 import static org.testng.Assert.assertEquals;
 
+@Slf4j
 public class VerifyLoginTest extends BaseTestSetup {
 
     By accountCssSelector = By.cssSelector("[data-target-element='#header-account']");
@@ -32,7 +34,7 @@ public class VerifyLoginTest extends BaseTestSetup {
     public void verifyIfUserIsLoggedSuccessfully(){
         loginSteps();
 
-        LOGGER.info("5. Verify if user is logged successfully");
+        log.info("5. Verify if user is logged successfully");
         assertEquals(driver.findElement(welcomeMsg).getText(), expectedWelcomeMsg,"Check welcome MSG");
 
     }
@@ -41,15 +43,15 @@ public class VerifyLoginTest extends BaseTestSetup {
     public void verifyUserLogout(){
         loginSteps();
 
-        LOGGER.info("5. Verify if user is logged successfully");
+        log.info("5. Verify if user is logged successfully");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(driver.findElement(welcomeMsg).getText(), expectedWelcomeMsg,"Check welcome MSG");
 
-        LOGGER.info("6. Click on the Logout");
+        log.info("6. Click on the Logout");
         driver.findElement(accountCssSelector).click();
         driver.findElement(logoutCssSelector).click();
 
-        LOGGER.info("7. Verify if user is log out successfully");
+        log.info("7. Verify if user is log out successfully");
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
         explicitWait.until(ExpectedConditions.titleIs(expectedPageTitle));
         softAssert.assertEquals(driver.getTitle(), expectedPageTitle, "Check page title");
@@ -68,13 +70,13 @@ public class VerifyLoginTest extends BaseTestSetup {
 
         loginSteps();
 
-        LOGGER.info("5. Click on the Account Information");
+        log.info("5. Click on the Account Information");
         driver.findElement(accInfoXPath).click();
 
-        LOGGER.info("6. Edit Account information and click on the Save button");
+        log.info("6. Edit Account information and click on the Save button");
         editUserInformation(editInfoID, editInfoData, saveButtonCssSelector);
 
-        LOGGER.info("7. Verify edit of user information");
+        log.info("7. Verify edit of user information");
         assertEquals(driver.findElement(successMsgCssSelector).getText(), expectedSuccessMsg, "Check success MSG");
         assertEquals(driver.findElement(welcomeMsg).getText()
                 , String.format("Hello, %s %s %s!", editInfoData[0], editInfoData[1], editInfoData[2])
@@ -91,19 +93,19 @@ public class VerifyLoginTest extends BaseTestSetup {
         String[] editInfoData = {user1.getFirstName(), user1.getMiddleName(), user1.getLastName(), user1.getPassword()};
         By saveButtonCssSelector = By.cssSelector("[title='Save']");
 
-        LOGGER.info("Preparing account information");
+        log.info("Preparing account information");
 
         setUp();
 
         loginSteps();
 
-        LOGGER.info("5. Click on the Account Information");
+        log.info("5. Click on the Account Information");
         driver.findElement(accInfoXPath).click();
 
-        LOGGER.info("6. Restoring Account information");
+        log.info("6. Restoring Account information");
         editUserInformation(editInfoID, editInfoData, saveButtonCssSelector);
 
-        LOGGER.info("7. Checking welcome msg");
+        log.info("7. Checking welcome msg");
         assertEquals(driver.findElement(welcomeMsg).getText(), expectedWelcomeMsg,"Check welcome MSG");
 
         cleanUp();
@@ -121,15 +123,15 @@ public class VerifyLoginTest extends BaseTestSetup {
         String[] loginData = {user1.getEmail(), user1.getPassword()};
         user1.setEmail("lenrok.test1@gmail.com");
 
-        LOGGER.info("2. Click on the Log In");
+        log.info("2. Click on the Log In");
         driver.findElement(accountCssSelector).click();
         driver.findElement(logInCssSelector).click();
 
-        LOGGER.info("3. Fill login user information");
+        log.info("3. Fill login user information");
         IntStream.range(0, loginID.length)
                 .forEach(i -> driver.findElement(loginID[i]).sendKeys(loginData[i]));
 
-        LOGGER.info("4. Click login button");
+        log.info("4. Click login button");
         driver.findElement(loginButton).click();
     }
 }

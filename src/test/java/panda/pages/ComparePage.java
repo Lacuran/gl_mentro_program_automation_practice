@@ -11,25 +11,20 @@ import java.util.List;
 public class ComparePage {
 
     WebDriver driver;
-    MobilePage mobilePage;
     By actualTitlePopupXpath = By.xpath("//*[@class='page-title title-buttons']/h1");
     By closePopupWindowButton = By.cssSelector("[title='Close Window']");
     SoftAssert softAssert = new SoftAssert();
+
     public ComparePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public MobilePage switchToMainWindow(){
-        mobilePage.switchToMainWindow();
-        return new MobilePage(driver);
-    }
-
-    public ComparePage assertPopUpPageTitle(String expectedPopUpTitle, String assertionErrorMessage){
+    public ComparePage assertPopUpPageTitle(String expectedPopUpTitle, String assertionErrorMessage) {
         softAssert.assertEquals(getPopUpPageTitle(), expectedPopUpTitle, assertionErrorMessage);
         return this;
     }
 
-    public ComparePage assertPhonesOnPopUp(String[] expectedArrayPhoneList, String assertionErrorMessage){
+    public ComparePage assertPhonesOnPopUp(String[] expectedArrayPhoneList, String assertionErrorMessage) {
         softAssert.assertEquals(getPhoneList(), Arrays.stream(expectedArrayPhoneList).map(ex -> ex.toUpperCase()).sorted().toList(), assertionErrorMessage);
         softAssert.assertAll();
         return this;
@@ -44,12 +39,12 @@ public class ComparePage {
         return phoneList;
     }
 
-    public String getPopUpPageTitle(){
+    public String getPopUpPageTitle() {
         return driver.findElement(actualTitlePopupXpath).getText();
     }
 
-    public ComparePage closePopUpWindow(){
+    public MobilePage closePopUpWindow() {
         driver.findElement(closePopupWindowButton).click();
-        return this;
+        return new MobilePage(driver);
     }
 }

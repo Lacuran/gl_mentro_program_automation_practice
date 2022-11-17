@@ -13,7 +13,6 @@ import static org.testng.Assert.assertEquals;
 
 public class MobilePage {
     WebDriver driver;
-    ComparePage comparePage;
     String mainWindowHandle;
     String popup;
     By selectByNameDropdown = By.xpath("(//*[@title='Sort By'])[1]");
@@ -25,7 +24,10 @@ public class MobilePage {
 
     public MobilePage(WebDriver driver) {
         this.driver = driver;
-        this.mainWindowHandle = driver.getWindowHandle();
+        this.mainWindowHandle = driver.getWindowHandles()
+                .stream()
+                .findFirst()
+                .orElseThrow();
     }
 
     private By phoneCssSelector(String phoneName) {
@@ -53,6 +55,10 @@ public class MobilePage {
 
     public PhoneTypes clickPhoneCssSelector(String phoneName) {
         driver.findElement(phoneCssSelector(phoneName)).click();
+        return new PhoneTypes(driver);
+    }
+
+    public PhoneTypes getPhoneTypes(){
         return new PhoneTypes(driver);
     }
 

@@ -1,6 +1,7 @@
 package live.panda.testing;
 
 import base.test.BaseTestSetup;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.locators.RelativeLocator;
@@ -10,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
     By addToCompareButton;
 
@@ -27,10 +29,10 @@ public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
 //        By samsungCss = By.cssSelector("[title='Samsung Galaxy']");
 //        By xperiaCss = By.cssSelector("[title='Sony Xperia']");
 
-        LOGGER.info("2. Click on the 'MOBILE' menu");
+        log.info("2. Click on the 'MOBILE' menu");
         driver.findElement(mobileXpath).click();
 
-        LOGGER.info("3. In mobile product list, click on the 'Add to Compare' for 2 mobiles");
+        log.info("3. In mobile product list, click on the 'Add to Compare' for 2 mobiles");
         Arrays.stream(phoneArray).forEach(phoneName -> addPhoneToCompare(phoneName));
 
         /*List<WebElement> addCompareButtons = driver.findElements(addToCompareButton);
@@ -38,11 +40,11 @@ public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
         List<WebElement> addCompareButtons2 = driver.findElements(addToCompareButton);
         addCompareButtons2.get(1).click();*/
 
-        LOGGER.info("4. Click on the 'COMPARE' button");
+        log.info("4. Click on the 'COMPARE' button");
         driver.findElement(compareButton).click();
 
 
-        LOGGER.info("5. Verify the pop-up window and check that the products are reflected in it");
+        log.info("5. Verify the pop-up window and check that the products are reflected in it");
         String mainWindowHandle = driver.getWindowHandle();
         String popup = driver.getWindowHandles()
                 .stream()
@@ -66,7 +68,7 @@ public class VerifyTheComparePopUpWindowTest extends BaseTestSetup {
         fewAsserts.assertEquals(phoneList, Arrays.stream(phoneArray).map(ex -> ex.toUpperCase()).sorted().toList(),"Check sony");
 
 
-        LOGGER.info("6. Close the pop-up window");
+        log.info("6. Close the pop-up window");
         driver.findElement(closePopupWindowButton).click();
         driver.switchTo().window(mainWindowHandle);
         fewAsserts.assertEquals(driver.getTitle(), "Mobile", "Check mobile title page");

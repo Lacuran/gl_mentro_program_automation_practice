@@ -1,12 +1,14 @@
 package refactored.test;
 
 import base.test.BaseTestSetup;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
 import panda.pages.MobilePage;
 import panda.pages.PandaHomePage;
 
 import static org.testng.Assert.assertEquals;
 
+@Slf4j
 public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
 
     @Test(description = "1")
@@ -17,19 +19,19 @@ public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
         String expectedTitle = "Home page";
         String mobileExpectedTitle = "Mobile";
 
-        LOGGER.info("2.Verify the title of the page");
+        log.info("2.Verify the title of the page");
         assertEquals(homePage.getHomePageTitle(), expectedTitle);
 
-        LOGGER.info("3.Click on Mobile menu");
+        log.info("3.Click on Mobile menu");
         homePage.clickMobileLink();
 
-        LOGGER.info("4.Verify the tittle of the page");
+        log.info("4.Verify the tittle of the page");
         assertEquals(mobilePage.getMobilePageTitle(), mobileExpectedTitle);
 
-        LOGGER.info("5.In the list of all mobile, select SORT BY dropdown as name");
+        log.info("5.In the list of all mobile, select SORT BY dropdown as name");
         mobilePage.clickSelectByNameDropdown();
 
-        LOGGER.info("6.Verify all product are sorted by name");
+        log.info("6.Verify all product are sorted by name");
         assertEquals(mobilePage.getMobileList(), mobilePage.getMobileList().stream().sorted().toList());
 
     }

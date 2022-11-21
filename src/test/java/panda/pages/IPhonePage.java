@@ -1,8 +1,9 @@
 package panda.pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
+@Slf4j
 public class IPhonePage {
 
     WebDriver driver;
@@ -13,6 +14,7 @@ public class IPhonePage {
     }
 
     public String getPhoneCostString() {
+        log.info("Getting IPhone price");
         return driver.findElement(phonePrice).getText();
     }
 }

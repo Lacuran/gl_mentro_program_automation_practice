@@ -3,7 +3,6 @@ package refactored.test;
 import base.test.BaseTestSetup;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
-import panda.pages.MobilePage;
 import panda.pages.PandaHomePage;
 
 import static org.testng.Assert.assertEquals;
@@ -15,7 +14,6 @@ public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
     public void verifyItemInTheMobileListPageCanBeShortedByNameTest() {
         //variables
         PandaHomePage homePage = new PandaHomePage(driver);
-        MobilePage mobilePage = new MobilePage(driver);
         String expectedTitle = "Home page";
         String mobileExpectedTitle = "Mobile";
 
@@ -26,13 +24,14 @@ public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
         homePage.clickMobileLink();
 
         log.info("4.Verify the tittle of the page");
-        assertEquals(mobilePage.getMobilePageTitle(), mobileExpectedTitle);
+        assertEquals(homePage.getMobilePage().getMobilePageTitle(), mobileExpectedTitle);
 
         log.info("5.In the list of all mobile, select SORT BY dropdown as name");
-        mobilePage.clickSelectByNameDropdown();
+        homePage.getMobilePage().clickSelectByNameDropdown();
 
         log.info("6.Verify all product are sorted by name");
-        assertEquals(mobilePage.getMobileList(), mobilePage.getMobileList().stream().sorted().toList());
+        assertEquals(homePage.getMobilePage().getMobileList()
+                ,homePage.getMobilePage().getMobileList().stream().sorted().toList());
 
     }
 

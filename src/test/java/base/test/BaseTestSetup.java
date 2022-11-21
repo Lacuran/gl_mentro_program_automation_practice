@@ -25,7 +25,6 @@ public class BaseTestSetup {
 
     @AfterMethod
     public void cleanUp() {
-
         log.info("Cleanup Driver");
         driver.quit();
     }

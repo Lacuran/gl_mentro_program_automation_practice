@@ -31,28 +31,11 @@ public class PageObjectVerifyWishlistTest extends BaseTestSetup {
                 .clickRegisterButton()
                 .assertRegistration(expectedRegistrationMsg, assertErrorMSG)
                 .clickTVLink()
-                .addToWishList()
+                .addToWishlist()
                 .clickShareWishListLink()
                 .shareWishlist(user)
                 .assertSuccessSharing(expectedMsg, errorAssertSharingMSG);
 
-        log.info("2. Click on my account link");
-
-        log.info("3. Click Create Account link and fill New User information except Email ID");
-
-        log.info("4. Click Register");
-
-        log.info("5. Verify Registration is done");
-
-        log.info("6. Go to TV menu");
-
-        log.info("7. Add product in your wish list");
-
-        log.info("8. Click SHARE WISHLIST");
-
-        log.info("9. In next page enter Email and a message and click SHARE WISHLIST");
-
-        log.info("10. Check wishlist is shared");
     }
 
 }

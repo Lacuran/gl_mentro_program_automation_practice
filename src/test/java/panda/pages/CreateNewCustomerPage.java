@@ -1,12 +1,13 @@
 package panda.pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
 import utility.User;
 
 import java.util.stream.IntStream;
-
+@Slf4j
 public class CreateNewCustomerPage {
 
     WebDriver driver;
@@ -22,11 +23,13 @@ public class CreateNewCustomerPage {
     }
 
     public CreateNewCustomerPage fillUserInformation(User user){
+        log.info("Filling User information");
         fillRegistrationData(user);
         return this;
     }
 
     public MyAccountPage clickRegisterButton(){
+        log.info("Click register button");
         driver.findElement(submitAccButton).click();
         return new MyAccountPage(driver);
     }

@@ -1,5 +1,6 @@
 package panda.pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.Arrays;
 import java.util.List;
-
+@Slf4j
 public class ComparePage {
 
     WebDriver driver;
@@ -20,11 +21,13 @@ public class ComparePage {
     }
 
     public ComparePage assertPopUpPageTitle(String expectedPopUpTitle, String assertionErrorMessage) {
+        log.info("Assert PopUp Page Title");
         softAssert.assertEquals(getPopUpPageTitle(), expectedPopUpTitle, assertionErrorMessage);
         return this;
     }
 
     public ComparePage assertPhonesOnPopUp(String[] expectedArrayPhoneList, String assertionErrorMessage) {
+        log.info("Assert Phones on PopUp");
         softAssert.assertEquals(getPhoneList(), Arrays.stream(expectedArrayPhoneList).map(ex -> ex.toUpperCase()).sorted().toList(), assertionErrorMessage);
         softAssert.assertAll();
         return this;
@@ -40,10 +43,12 @@ public class ComparePage {
     }
 
     public String getPopUpPageTitle() {
+        log.info("Getting PopUp page title");
         return driver.findElement(actualTitlePopupXpath).getText();
     }
 
     public MobilePage closePopUpWindow() {
+        log.info("Closing PopUp Window");
         driver.findElement(closePopupWindowButton).click();
         return new MobilePage(driver);
     }

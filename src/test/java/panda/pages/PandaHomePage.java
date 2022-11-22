@@ -37,9 +37,15 @@ public class PandaHomePage {
         driver.findElement(myAccountLink).click();
         return new CustomerLoginPage(driver);
     }
+
     public MobilePage getMobilePage(){
         log.info("Diving into Mobile Page");
         return new MobilePage(driver);
+    }
+
+    public MyAccountPage getMyAccountPage(){
+        log.info("Diving into My Account Page");
+        return new MyAccountPage(driver);
     }
 
     public String getHomePageTitle() {

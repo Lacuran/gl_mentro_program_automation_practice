@@ -26,6 +26,9 @@ public class MyAccountPage {
     By welcomeMsg = By.cssSelector(".hello");
     By accInfoXPath = By.xpath("//a[contains(text(), 'Account Information')]");
     By successMsgCssSelector = By.cssSelector(".success-msg");
+    By reorderButton = RelativeLocator
+            .with(By.cssSelector(".link-reorder"))
+            .below(By.cssSelector(".first.odd"));
 
 
     public MyAccountPage(WebDriver driver) {
@@ -79,6 +82,12 @@ public class MyAccountPage {
     public String getSuccessEditInfoMSG(){
         log.info("Getting Success MSG");
         return driver.findElement(successMsgCssSelector).getText();
+    }
+
+    public ShoppingCartPage clickReorderLink(){
+        log.info("Click Reorder Link");
+        driver.findElement(reorderButton).click();
+        return new ShoppingCartPage(driver);
     }
 
     private WebDriverWait explicitWait(){

@@ -11,6 +11,7 @@ public class PandaHomePage {
     By tvXpath = By.xpath("//*[text()='TV']");
     By accountCssSelector = By.cssSelector("[data-target-element='#header-account']");
     By myAccountLink = RelativeLocator.with(By.cssSelector("[title='My Account']")).below(accountCssSelector);
+    By advanceSearchLink = By.cssSelector("[title='Advanced Search']");
 
 
 
@@ -23,7 +24,6 @@ public class PandaHomePage {
         driver.findElement(mobileLink).click();
         return new MobilePage(driver);
     }
-
 
     public TVPage clickTVLink() {
         log.info("Click TV link");
@@ -46,6 +46,12 @@ public class PandaHomePage {
     public MyAccountPage getMyAccountPage(){
         log.info("Diving into My Account Page");
         return new MyAccountPage(driver);
+    }
+
+    public AdvanceSearchPage clickAdvanceSearchLink(){
+        log.info("Click Advance Search Link");
+        driver.findElement(advanceSearchLink).click();
+        return new AdvanceSearchPage(driver);
     }
 
     public String getHomePageTitle() {

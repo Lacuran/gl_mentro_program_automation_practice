@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
+
 @Slf4j
 public class TVPage {
 
@@ -14,6 +15,7 @@ public class TVPage {
     public TVPage(WebDriver driver) {
         this.driver = driver;
     }
+
     public MyWishlistPage addToWishlist() {
         log.info("Add LG LCD TV to Wishlist");
         driver.findElement(addToWishListButton).click();

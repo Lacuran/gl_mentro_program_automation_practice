@@ -37,5 +37,4 @@ public class PageObjectVerifyWishlistTest extends BaseTestSetup {
                 .assertSuccessSharing(expectedMsg, errorAssertSharingMSG);
 
     }
-
 }

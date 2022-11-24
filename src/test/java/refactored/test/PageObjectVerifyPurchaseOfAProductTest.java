@@ -15,7 +15,7 @@ public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
             , "Test", "lenrok.test1@gmail.com", "test123");
 
     @BeforeTest
-    public void beforeTestSetUp(){
+    public void beforeTestSetUp() {
 
         setUp();
         PandaHomePage homePage = new PandaHomePage(driver);
@@ -27,8 +27,9 @@ public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
         cleanUp();
 
     }
+
     @Test(description = "6")
-    public void verifyUserIsAbleToPurchaseProductUsingRegisteredEmailTest(){
+    public void verifyUserIsAbleToPurchaseProductUsingRegisteredEmailTest() {
         //variables
         PandaHomePage homePage = new PandaHomePage(driver);
         Faker faker = new Faker();
@@ -52,7 +53,7 @@ public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
                 .clickLoginButton()
                 .clickMyWishListLink()
                 .addToCartButton()
-                .fillShippingAndTaxField("PL", "Malopolska","faker.address().zipCode()")
+                .fillShippingAndTaxField("PL", "Malopolska", "faker.address().zipCode()")
                 .clickEstimateLink()
                 .assertShippingCost(expectedPrice, assertionShippingPriceMSG)
                 .selectRadioButton()
@@ -69,5 +70,4 @@ public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
                 .assertOrderIsGenerated(expectedOrderMSG, pageOrderAssertionErrorMSG);
 
     }
-
 }

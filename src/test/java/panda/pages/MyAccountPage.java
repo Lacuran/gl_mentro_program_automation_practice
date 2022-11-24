@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static org.testng.Assert.assertEquals;
+
 @Slf4j
 public class MyAccountPage {
     WebDriver driver;
@@ -30,19 +31,18 @@ public class MyAccountPage {
             .with(By.cssSelector(".link-reorder"))
             .below(By.cssSelector(".first.odd"));
 
-
     public MyAccountPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public MyAccountPage assertRegistration(String expectedRegistrationMsg, String assertionErrorMSG){
+    public MyAccountPage assertRegistration(String expectedRegistrationMsg, String assertionErrorMSG) {
         log.info("Assert Registration");
         assertEquals(driver.findElement(registrationDoneText).getText(), expectedRegistrationMsg
                 , assertionErrorMSG);
         return this;
     }
 
-    public MobilePage clickMobileLink(){
+    public MobilePage clickMobileLink() {
         log.info("Click Mobile Link");
         driver.findElement(mobileLink).click();
         return new MobilePage(driver);
@@ -54,13 +54,13 @@ public class MyAccountPage {
         return new TVPage(driver);
     }
 
-    public MyWishlistPage clickMyWishListLink(){
+    public MyWishlistPage clickMyWishListLink() {
         log.info("Click My Wishlist");
         driver.findElement(myWishlistSelector).click();
         return new MyWishlistPage(driver);
     }
 
-    public PandaHomePage logOut(){
+    public PandaHomePage logOut() {
         log.info("Click Log Out");
         driver.findElement(accountCssSelector).click();
         driver.findElement(logoutCssSelector).click();
@@ -68,29 +68,29 @@ public class MyAccountPage {
         return new PandaHomePage(driver);
     }
 
-    public AccountInformationPage clickAccountInformationLink(){
+    public AccountInformationPage clickAccountInformationLink() {
         log.info("Click Account Information");
         driver.findElement(accInfoXPath).click();
         return new AccountInformationPage(driver);
     }
 
-    public String getWelcomeMSG(){
+    public String getWelcomeMSG() {
         log.info("Getting Welcome message");
         return driver.findElement(welcomeMsg).getText();
     }
 
-    public String getSuccessEditInfoMSG(){
+    public String getSuccessEditInfoMSG() {
         log.info("Getting Success MSG");
         return driver.findElement(successMsgCssSelector).getText();
     }
 
-    public ShoppingCartPage clickReorderLink(){
+    public ShoppingCartPage clickReorderLink() {
         log.info("Click Reorder Link");
         driver.findElement(reorderButton).click();
         return new ShoppingCartPage(driver);
     }
 
-    private WebDriverWait explicitWait(){
+    private WebDriverWait explicitWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 }

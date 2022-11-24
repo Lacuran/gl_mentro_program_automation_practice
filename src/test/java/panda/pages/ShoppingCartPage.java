@@ -7,6 +7,7 @@ import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.Select;
 
 import static org.testng.Assert.assertEquals;
+
 @Slf4j
 public class ShoppingCartPage {
 
@@ -63,19 +64,19 @@ public class ShoppingCartPage {
         return this;
     }
 
-    public ShoppingCartPage selectRadioButton(){
+    public ShoppingCartPage selectRadioButton() {
         log.info("Selecting price on Radio buttons");
         driver.findElement(radioButton).click();
         return this;
     }
 
-    public ShoppingCartPage clickUpdateTotalLink(){
+    public ShoppingCartPage clickUpdateTotalLink() {
         log.info("Click Update total");
         driver.findElement(updateTotalButton).click();
         return this;
     }
 
-    public CheckoutPage clickCheckoutButton(){
+    public CheckoutPage clickCheckoutButton() {
         log.info("Click Checkout button");
         driver.findElement(checkoutButton).click();
         return new CheckoutPage(driver);
@@ -99,7 +100,7 @@ public class ShoppingCartPage {
         return this;
     }
 
-    public ShoppingCartPage assertTotalShippingCost(String expectedTotalPrice, String assertionErrorMessage){
+    public ShoppingCartPage assertTotalShippingCost(String expectedTotalPrice, String assertionErrorMessage) {
         log.info("Assert Total Shipping Cost");
         assertEquals(driver.findElement(totalPriceXPath).getText(), expectedTotalPrice, assertionErrorMessage);
         return this;

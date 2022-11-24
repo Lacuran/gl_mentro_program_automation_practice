@@ -26,8 +26,5 @@ public class PageObjectVerifyTheComparePopUpWindowTest extends BaseTestSetup {
                 .switchToMainWindow()
                 .assertMobilePageTitle(expectedMobilePageTitle, "Check mobile title page");
 
-
     }
-
-
 }

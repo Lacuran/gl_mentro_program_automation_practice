@@ -31,9 +31,7 @@ public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
 
         log.info("6.Verify all product are sorted by name");
         assertEquals(homePage.getMobilePage().getMobileList()
-                ,homePage.getMobilePage().getMobileList().stream().sorted().toList());
+                , homePage.getMobilePage().getMobileList().stream().sorted().toList());
 
     }
-
-
 }

@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+
 @Slf4j
 public class MobilePage {
     WebDriver driver;
@@ -21,7 +22,6 @@ public class MobilePage {
     By addToCartCss = By.cssSelector(".btn-cart");
     By addToCompareButton = By.cssSelector(".link-compare");
     By compareButton = By.cssSelector("[title='Compare']");
-
 
     public MobilePage(WebDriver driver) {
         this.driver = driver;
@@ -36,12 +36,12 @@ public class MobilePage {
         return By.cssSelector("[title='" + phoneName + "']");
     }
 
-    public String getMobilePageTitle(){
+    public String getMobilePageTitle() {
         log.info("Getting Mobile Page Title");
         return driver.getTitle();
     }
 
-    public void clickSelectByNameDropdown(){
+    public void clickSelectByNameDropdown() {
         log.info("Selecting by Name sorting");
         Select selectByName = new Select(driver.findElement(selectByNameDropdown));
         selectByName.selectByVisibleText("Name");
@@ -65,18 +65,18 @@ public class MobilePage {
         return new PhoneTypes(driver);
     }
 
-    public PhoneTypes getPhoneTypes(){
+    public PhoneTypes getPhoneTypes() {
         log.info("Getting into PhoneTypes");
         return new PhoneTypes(driver);
     }
 
-    public ShoppingCartPage addToCart(){
+    public ShoppingCartPage addToCart() {
         log.info("Click Add to Cart button");
         driver.findElements(addToCartCss).stream().findAny().orElseThrow().click();
         return new ShoppingCartPage(driver);
     }
 
-    private void addPhoneToCompare(String phoneName){
+    private void addPhoneToCompare(String phoneName) {
         log.info("Adding " + phoneName + " to compare");
         driver.findElement(RelativeLocator.with(addToCompareButton)
                         .below(By.cssSelector("[title='" + phoneName + "']")))
@@ -90,13 +90,13 @@ public class MobilePage {
         return this;
     }
 
-    public MobilePage clickOnCompareButton(){
+    public MobilePage clickOnCompareButton() {
         log.info("Click Compare button");
         driver.findElement(compareButton).click();
         return this;
     }
 
-    public ComparePage switchToPopUp(){
+    public ComparePage switchToPopUp() {
         log.info("Switching windows");
         this.popup = driver.getWindowHandles()
                 .stream()
@@ -108,16 +108,15 @@ public class MobilePage {
         return new ComparePage(driver);
     }
 
-    public MobilePage switchToMainWindow(){
+    public MobilePage switchToMainWindow() {
         log.info("Switching to Main Window");
         driver.switchTo().window(mainWindowHandle);
         return this;
     }
 
-    public MobilePage assertMobilePageTitle(String expectedMobilePageTitle, String assertionErrorMessage){
+    public MobilePage assertMobilePageTitle(String expectedMobilePageTitle, String assertionErrorMessage) {
         log.info("Assert Mobile Page");
         assertEquals(getMobilePageTitle(), expectedMobilePageTitle, assertionErrorMessage);
         return this;
     }
-
 }

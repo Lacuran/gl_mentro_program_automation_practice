@@ -11,7 +11,7 @@ import utility.User;
 public class PageObjectVerifyChangeOrReorderPreviouslyAddedProductTest extends BaseTestSetup {
 
     @Test(description = "8")
-    public void verifyYouAreAbleToChangeOrReorderPreviouslyAddedProductTest(){
+    public void verifyYouAreAbleToChangeOrReorderPreviouslyAddedProductTest() {
         //variables
         PandaHomePage homePage = new PandaHomePage(driver);
         Faker faker = new Faker();

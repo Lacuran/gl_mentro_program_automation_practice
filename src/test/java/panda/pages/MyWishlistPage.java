@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static org.testng.Assert.assertEquals;
+
 @Slf4j
 public class MyWishlistPage {
 
@@ -23,13 +24,13 @@ public class MyWishlistPage {
         return new ShareWishlistPage(driver);
     }
 
-    public ShoppingCartPage addToCartButton(){
+    public ShoppingCartPage addToCartButton() {
         log.info("Click Add To Cart button");
         driver.findElement(addToCartCssSelector).click();
         return new ShoppingCartPage(driver);
     }
 
-    public MyWishlistPage assertSuccessSharing(String expectedSuccessSharingMsg, String assertionErrorMSG){
+    public MyWishlistPage assertSuccessSharing(String expectedSuccessSharingMsg, String assertionErrorMSG) {
         log.info("Assert Success Sharing Wishlist");
         assertEquals(driver.findElement(successMsgLocator).getText(), expectedSuccessSharingMsg
                 , assertionErrorMSG);

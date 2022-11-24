@@ -17,7 +17,7 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
     String expectedWelcomeMsg = "Hello, Kornel Maybe Test!";
 
     @Test(groups = "login", priority = 1, description = "self-assignment")
-    public void verifyIfUserIsLoggedSuccessfully(){
+    public void verifyIfUserIsLoggedSuccessfully() {
         PandaHomePage homePage = new PandaHomePage(driver);
 
         homePage.clickMyAccountLink()
@@ -25,12 +25,12 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
                 .clickLoginButton();
 
         log.info("Verify if user is logged successfully");
-        assertEquals(homePage.getMyAccountPage().getWelcomeMSG(), expectedWelcomeMsg,"Check welcome MSG");
+        assertEquals(homePage.getMyAccountPage().getWelcomeMSG(), expectedWelcomeMsg, "Check welcome MSG");
 
     }
 
     @Test(groups = "login", priority = 2)
-    public void verifyUserLogout(){
+    public void verifyUserLogout() {
         PandaHomePage homePage = new PandaHomePage(driver);
         String expectedPageTitle = "Home page";
 
@@ -45,7 +45,7 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
     }
 
     @Test(groups = "login", priority = 3)
-    public void verifyEditOfUserInformation(){
+    public void verifyEditOfUserInformation() {
         //variables
         PandaHomePage homePage = new PandaHomePage(driver);
         String[] editInfoData = {user2.getFirstName(), user2.getMiddleName(), user2.getLastName(), user2.getPassword()};
@@ -62,8 +62,8 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
 
         log.info("Verify edit of user information");
         assertEquals(homePage.getMyAccountPage().getSuccessEditInfoMSG()
-                ,expectedSuccessMsg
-                ,"Check success MSG");
+                , expectedSuccessMsg
+                , "Check success MSG");
 
         assertEquals(homePage.getMyAccountPage().getWelcomeMSG()
                 , expectedWelcomeMSG
@@ -72,7 +72,7 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
     }
 
     @BeforeGroups("login")
-    public void setUpUserInformation(){
+    public void setUpUserInformation() {
         //This BeforeGroup test restore account information
         user1.setEmail("lenrok.test1@gmail.com");
         String[] editInfoData = {user1.getFirstName(), user1.getMiddleName(), user1.getLastName(), user1.getPassword()};
@@ -90,8 +90,8 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
 
         log.info("Checking welcome msg");
         assertEquals(homePage.getMyAccountPage().getWelcomeMSG()
-                ,expectedWelcomeMsg
-                ,"Check welcome MSG");
+                , expectedWelcomeMsg
+                , "Check welcome MSG");
 
         cleanUp();
 

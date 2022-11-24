@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
+
 @Slf4j
 public class PandaHomePage {
     WebDriver driver;
@@ -12,8 +13,6 @@ public class PandaHomePage {
     By accountCssSelector = By.cssSelector("[data-target-element='#header-account']");
     By myAccountLink = RelativeLocator.with(By.cssSelector("[title='My Account']")).below(accountCssSelector);
     By advanceSearchLink = By.cssSelector("[title='Advanced Search']");
-
-
 
     public PandaHomePage(WebDriver driver) {
         this.driver = driver;
@@ -31,24 +30,24 @@ public class PandaHomePage {
         return new TVPage(driver);
     }
 
-    public CustomerLoginPage clickMyAccountLink(){
+    public CustomerLoginPage clickMyAccountLink() {
         log.info("Click My Account link");
         driver.findElement(accountCssSelector).click();
         driver.findElement(myAccountLink).click();
         return new CustomerLoginPage(driver);
     }
 
-    public MobilePage getMobilePage(){
+    public MobilePage getMobilePage() {
         log.info("Diving into Mobile Page");
         return new MobilePage(driver);
     }
 
-    public MyAccountPage getMyAccountPage(){
+    public MyAccountPage getMyAccountPage() {
         log.info("Diving into My Account Page");
         return new MyAccountPage(driver);
     }
 
-    public AdvanceSearchPage clickAdvanceSearchLink(){
+    public AdvanceSearchPage clickAdvanceSearchLink() {
         log.info("Click Advance Search Link");
         driver.findElement(advanceSearchLink).click();
         return new AdvanceSearchPage(driver);

@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import panda.pages.PandaHomePage;
 
 import static org.testng.Assert.assertEquals;
+
 @Slf4j
 public class PageObjectVerifyCostOfProductTest extends BaseTestSetup {
 
@@ -22,7 +23,7 @@ public class PageObjectVerifyCostOfProductTest extends BaseTestSetup {
     @Test(dataProvider = "smartphone", description = "2")
     public void verifyCostOfProductInListPageAndDetailsPageTest(String phoneName) {
         PandaHomePage homePage = new PandaHomePage(driver);
-        
+
         log.info("2. Click on the 'MOBILE' menu");
         homePage.clickMobileLink();
 
@@ -39,7 +40,4 @@ public class PageObjectVerifyCostOfProductTest extends BaseTestSetup {
         assertEquals(phoneCostOnMobilePage, phoneCostOnMobileDetailsPage, "Compare value in Step 3 and Step 5");
 
     }
-
-
 }
-

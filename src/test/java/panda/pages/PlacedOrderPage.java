@@ -21,19 +21,19 @@ public class PlacedOrderPage {
         this.driver = driver;
     }
 
-    public PlacedOrderPage assertOrderIsGenerated(String expectedOrderMSG, String assertionErrorMessage){
+    public PlacedOrderPage assertOrderIsGenerated(String expectedOrderMSG, String assertionErrorMessage) {
         log.info("Assert Order is Generated");
         explicitWait().until(ExpectedConditions.titleIs(placeOrderPageTitle));
         assertEquals(driver.findElement(orderMSG).getText(), expectedOrderMSG, assertionErrorMessage);
         return this;
     }
 
-    public String getPlaceOrderPageTitleTitle(){
+    public String getPlaceOrderPageTitleTitle() {
         log.info("Getting Placed Order page title");
         return driver.getTitle();
     }
 
-    private WebDriverWait explicitWait(){
+    private WebDriverWait explicitWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 }

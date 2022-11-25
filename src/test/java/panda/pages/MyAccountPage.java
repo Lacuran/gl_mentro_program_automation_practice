@@ -12,8 +12,8 @@ import java.time.Duration;
 import static org.testng.Assert.assertEquals;
 
 @Slf4j
-public class MyAccountPage {
-    WebDriver driver;
+public class MyAccountPage extends CommonPageElements {
+
     By registrationDoneText = By.cssSelector(".success-msg");
     By mobileLink = By.xpath("//*[text()='Mobile']");
     By tvXpath = By.xpath("//*[text()='TV']");
@@ -32,7 +32,7 @@ public class MyAccountPage {
             .below(By.cssSelector(".first.odd"));
 
     public MyAccountPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public MyAccountPage assertRegistration(String expectedRegistrationMsg, String assertionErrorMSG) {
@@ -42,16 +42,16 @@ public class MyAccountPage {
         return this;
     }
 
-    public MobilePage clickMobileLink() {
+    public ProductListingPage clickMobileLink() {
         log.info("Click Mobile Link");
         driver.findElement(mobileLink).click();
-        return new MobilePage(driver);
+        return new ProductListingPage(driver);
     }
 
-    public TVPage clickTVLink() {
+    public ProductListingPage clickTVLink() {
         log.info("Click TV Link");
         driver.findElement(tvXpath).click();
-        return new TVPage(driver);
+        return new ProductListingPage(driver);
     }
 
     public MyWishlistPage clickMyWishListLink() {

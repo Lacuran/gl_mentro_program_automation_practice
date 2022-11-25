@@ -13,7 +13,7 @@ public class BaseTestSetup {
     public WebDriver driver;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         driver = WebDriverManager.chromedriver().create();
 
         log.info("WebDriver Initialization");

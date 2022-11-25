@@ -3,7 +3,7 @@ package refactored.test;
 import base.test.BaseTestSetup;
 import com.github.javafaker.Faker;
 import lombok.extern.slf4j.Slf4j;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 import panda.pages.PandaHomePage;
 import utility.User;
@@ -11,10 +11,9 @@ import utility.User;
 @Slf4j
 public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
 
-    User user = new User("Kornel", "Maybe"
-            , "Test", "lenrok.test1@gmail.com", "test123");
+    User user = User.createUserFrom("Userdata1.json").setEmail("lenrok.test1@gmail.com");
 
-    @BeforeTest
+    @BeforeGroups("purchase")
     public void beforeTestSetUp() {
 
         setUp();
@@ -23,14 +22,16 @@ public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
                 .fillingLoginData(user)
                 .clickLoginButton()
                 .clickTVLink()
-                .addToWishlist();
+                .addToWishlist()
+                .openCart()
+                .emptyShoppingCart();
         cleanUp();
 
     }
 
-    @Test(description = "6")
+    @Test(groups = "purchase", description = "6")
     public void verifyUserIsAbleToPurchaseProductUsingRegisteredEmailTest() {
-        //variables
+
         PandaHomePage homePage = new PandaHomePage(driver);
         Faker faker = new Faker();
 
@@ -53,7 +54,7 @@ public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
                 .clickLoginButton()
                 .clickMyWishListLink()
                 .addToCartButton()
-                .fillShippingAndTaxField("PL", "Malopolska", "faker.address().zipCode()")
+                .fillShippingAndTaxField("PL", "Malopolska", zipcode)
                 .clickEstimateLink()
                 .assertShippingCost(expectedPrice, assertionShippingPriceMSG)
                 .selectRadioButton()
@@ -68,6 +69,5 @@ public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
                 .clickPaymentInformationContinueButton()
                 .clickPlaceOrderButton()
                 .assertOrderIsGenerated(expectedOrderMSG, pageOrderAssertionErrorMSG);
-
     }
 }

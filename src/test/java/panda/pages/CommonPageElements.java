@@ -6,19 +6,32 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
 @Slf4j
-public class TVPage {
+public class CommonPageElements {
 
     WebDriver driver;
     By addToWishListButton = RelativeLocator.with(By.cssSelector(".link-wishlist"))
             .below(By.cssSelector("[title='LG LCD']"));
+    By myCartButton = By.cssSelector(".top-link-cart");
+    By accountButton = By.cssSelector(".skip-account");
 
-    public TVPage(WebDriver driver) {
+    public CommonPageElements(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public String getPageTitle() {
+        log.info("Getting Home Page title");
+        return driver.getTitle();
     }
 
     public MyWishlistPage addToWishlist() {
         log.info("Add LG LCD TV to Wishlist");
         driver.findElement(addToWishListButton).click();
         return new MyWishlistPage(driver);
+    }
+
+    public ShoppingCartPage openCart() {
+        driver.findElement(accountButton).click();
+        driver.findElement(myCartButton).click();
+        return new ShoppingCartPage(driver);
     }
 }

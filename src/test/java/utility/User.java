@@ -8,7 +8,8 @@ import lombok.Setter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-@Getter @Setter
+@Getter
+@Setter
 public class User {
     private String firstName;
     private String middleName;
@@ -34,5 +35,10 @@ public class User {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public User setEmail(String email) {
+        this.email = email;
+        return this;
     }
 }

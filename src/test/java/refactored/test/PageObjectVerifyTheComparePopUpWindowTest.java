@@ -10,7 +10,7 @@ public class PageObjectVerifyTheComparePopUpWindowTest extends BaseTestSetup {
 
     @Test(description = "4")
     public void verifyThatYouAreAbleToCompareTwoProduct() {
-        //variables
+
         String[] phoneArray = {"IPhone", "Sony Xperia", "Samsung Galaxy"};
         String expectedPopupTitle = "COMPARE PRODUCTS";
         String expectedMobilePageTitle = "Mobile";
@@ -25,6 +25,5 @@ public class PageObjectVerifyTheComparePopUpWindowTest extends BaseTestSetup {
                 .closePopUpWindow()
                 .switchToMainWindow()
                 .assertMobilePageTitle(expectedMobilePageTitle, "Check mobile title page");
-
     }
 }

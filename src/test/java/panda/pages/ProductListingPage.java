@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.Select;
-import utility.PhoneTypes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,8 +12,8 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 
 @Slf4j
-public class MobilePage {
-    WebDriver driver;
+public class ProductListingPage extends CommonPageElements {
+
     String mainWindowHandle;
     String popup;
     By selectByNameDropdown = By.xpath("(//*[@title='Sort By'])[1]");
@@ -23,8 +22,8 @@ public class MobilePage {
     By addToCompareButton = By.cssSelector(".link-compare");
     By compareButton = By.cssSelector("[title='Compare']");
 
-    public MobilePage(WebDriver driver) {
-        this.driver = driver;
+    public ProductListingPage(WebDriver driver) {
+        super(driver);
         this.mainWindowHandle = driver.getWindowHandles()
                 .stream()
                 .findFirst()
@@ -34,11 +33,6 @@ public class MobilePage {
     private By phoneCssSelector(String phoneName) {
         log.info("Getting Data on " + phoneName);
         return By.cssSelector("[title='" + phoneName + "']");
-    }
-
-    public String getMobilePageTitle() {
-        log.info("Getting Mobile Page Title");
-        return driver.getTitle();
     }
 
     public void clickSelectByNameDropdown() {
@@ -59,15 +53,10 @@ public class MobilePage {
     }
 
 
-    public PhoneTypes clickPhoneCssSelector(String phoneName) {
+    public ProductDetailPage clickPhoneCssSelector(String phoneName) {
         log.info("Clicking " + phoneName + " Css Selector");
         driver.findElement(phoneCssSelector(phoneName)).click();
-        return new PhoneTypes(driver);
-    }
-
-    public PhoneTypes getPhoneTypes() {
-        log.info("Getting into PhoneTypes");
-        return new PhoneTypes(driver);
+        return new ProductDetailPage(driver);
     }
 
     public ShoppingCartPage addToCart() {
@@ -84,13 +73,13 @@ public class MobilePage {
 
     }
 
-    public MobilePage addToCompare(String[] phoneArray) {
+    public ProductListingPage addToCompare(String[] phoneArray) {
         log.info("Click Add to compare button");
         Arrays.stream(phoneArray).forEach(phoneName -> addPhoneToCompare(phoneName));
         return this;
     }
 
-    public MobilePage clickOnCompareButton() {
+    public ProductListingPage clickOnCompareButton() {
         log.info("Click Compare button");
         driver.findElement(compareButton).click();
         return this;
@@ -108,15 +97,15 @@ public class MobilePage {
         return new ComparePage(driver);
     }
 
-    public MobilePage switchToMainWindow() {
+    public ProductListingPage switchToMainWindow() {
         log.info("Switching to Main Window");
         driver.switchTo().window(mainWindowHandle);
         return this;
     }
 
-    public MobilePage assertMobilePageTitle(String expectedMobilePageTitle, String assertionErrorMessage) {
+    public ProductListingPage assertMobilePageTitle(String expectedMobilePageTitle, String assertionErrorMessage) {
         log.info("Assert Mobile Page");
-        assertEquals(getMobilePageTitle(), expectedMobilePageTitle, assertionErrorMessage);
+        assertEquals(getPageTitle(), expectedMobilePageTitle, assertionErrorMessage);
         return this;
     }
 }

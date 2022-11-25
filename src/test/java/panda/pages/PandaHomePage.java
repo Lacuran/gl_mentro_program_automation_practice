@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
 @Slf4j
-public class PandaHomePage {
-    WebDriver driver;
+public class PandaHomePage extends CommonPageElements {
+
     By mobileLink = By.xpath("//*[text()='Mobile']");
     By tvXpath = By.xpath("//*[text()='TV']");
     By accountCssSelector = By.cssSelector("[data-target-element='#header-account']");
@@ -15,19 +15,19 @@ public class PandaHomePage {
     By advanceSearchLink = By.cssSelector("[title='Advanced Search']");
 
     public PandaHomePage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    public MobilePage clickMobileLink() {
+    public ProductListingPage clickMobileLink() {
         log.info("Click Mobile link");
         driver.findElement(mobileLink).click();
-        return new MobilePage(driver);
+        return new ProductListingPage(driver);
     }
 
-    public TVPage clickTVLink() {
+    public ProductListingPage clickTVLink() {
         log.info("Click TV link");
         driver.findElement(tvXpath).click();
-        return new TVPage(driver);
+        return new ProductListingPage(driver);
     }
 
     public CustomerLoginPage clickMyAccountLink() {
@@ -37,24 +37,9 @@ public class PandaHomePage {
         return new CustomerLoginPage(driver);
     }
 
-    public MobilePage getMobilePage() {
-        log.info("Diving into Mobile Page");
-        return new MobilePage(driver);
-    }
-
-    public MyAccountPage getMyAccountPage() {
-        log.info("Diving into My Account Page");
-        return new MyAccountPage(driver);
-    }
-
     public AdvanceSearchPage clickAdvanceSearchLink() {
         log.info("Click Advance Search Link");
         driver.findElement(advanceSearchLink).click();
         return new AdvanceSearchPage(driver);
-    }
-
-    public String getHomePageTitle() {
-        log.info("Getting Panda Home Page title");
-        return driver.getTitle();
     }
 }

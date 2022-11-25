@@ -7,15 +7,14 @@ import org.openqa.selenium.WebDriver;
 import static org.testng.Assert.assertEquals;
 
 @Slf4j
-public class MyWishlistPage {
+public class MyWishlistPage extends CommonPageElements {
 
-    WebDriver driver;
     By shareWishListButton = By.cssSelector(".btn-share");
     By successMsgLocator = By.cssSelector(".success-msg");
     By addToCartCssSelector = By.cssSelector(".btn-cart");
 
     public MyWishlistPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public ShareWishlistPage clickShareWishListLink() {

@@ -13,11 +13,9 @@ public class PageObjectVerifyWishlistTest extends BaseTestSetup {
 
     @Test(description = "5")
     public void verifyAccountCreationInECommerceAndShareWishlistTest() {
-        //variables
+
         String addToEmail = String.valueOf(ThreadLocalRandom.current().nextInt(999999999));
-        User user = new User("Kornel", "Maybe"
-                , "Test", "lenrok.test" + addToEmail + "@gmail.com"
-                , "test123");
+        User user = User.createUserFrom("Userdata1.json").setEmail("lenrok.test" + addToEmail + "@gmail.com");
         String expectedRegistrationMsg = "Thank you for registering with Main Website Store.";
         String assertErrorMSG = "Check registration MSG";
         String expectedMsg = "Your Wishlist has been shared.";
@@ -35,6 +33,5 @@ public class PageObjectVerifyWishlistTest extends BaseTestSetup {
                 .clickShareWishListLink()
                 .shareWishlist(user)
                 .assertSuccessSharing(expectedMsg, errorAssertSharingMSG);
-
     }
 }

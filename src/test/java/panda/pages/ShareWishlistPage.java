@@ -12,7 +12,6 @@ public class ShareWishlistPage {
     By submitShareButton = By.cssSelector("[title='Share Wishlist']");
     By shareWishlistEmail = By.id("email_address");
 
-
     public ShareWishlistPage(WebDriver driver) {
         this.driver = driver;
     }

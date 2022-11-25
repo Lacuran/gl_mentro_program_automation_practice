@@ -30,6 +30,7 @@ public class ShoppingCartPage {
     By checkoutButton = RelativeLocator
             .with(By.cssSelector(".btn-checkout"))
             .below(By.cssSelector(".top"));
+    By pageTitle = By.cssSelector(".page-title > h1");
 
     public ShoppingCartPage(WebDriver driver) {
         this.driver = driver;
@@ -45,7 +46,9 @@ public class ShoppingCartPage {
 
     public ShoppingCartPage emptyShoppingCart() {
         log.info("Emptying shopping cart");
-        driver.findElement(emptyCartButton).click();
+        if (!driver.findElement(pageTitle).getText().equalsIgnoreCase("SHOPPING CART IS EMPTY")) {
+            driver.findElement(emptyCartButton).click();
+        }
         return this;
     }
 

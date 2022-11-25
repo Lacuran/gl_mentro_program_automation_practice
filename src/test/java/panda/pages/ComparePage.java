@@ -47,9 +47,9 @@ public class ComparePage {
         return driver.findElement(actualTitlePopupXpath).getText();
     }
 
-    public MobilePage closePopUpWindow() {
+    public ProductListingPage closePopUpWindow() {
         log.info("Closing PopUp Window");
         driver.findElement(closePopupWindowButton).click();
-        return new MobilePage(driver);
+        return new ProductListingPage(driver);
     }
 }

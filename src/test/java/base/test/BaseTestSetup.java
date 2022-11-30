@@ -1,8 +1,8 @@
 package base.test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -14,7 +14,7 @@ public class BaseTestSetup {
 
     @BeforeMethod
     public void setUp() {
-        driver = WebDriverManager.chromedriver().create();
+        driver = new ChromeDriver();
 
         log.info("WebDriver Initialization");
         driver.manage().window().maximize();

@@ -7,6 +7,12 @@
             <class name="refactored.test.PageObjectVerifyTheItemsInMobileListTest"/>
             <class name="refactored.test.PageObjectVerifyCostOfProductTest"/>
             <class name="refactored.test.PageObjectVerifyShoppingCartTest"/>
+
+        </classes>
+    </test>
+
+    <test name="additional test 4">
+        <classes>
             <class name="refactored.test.PageObjectVerifySortFunctionalityWorksAsExpectedTest"/>
         </classes>
     </test>

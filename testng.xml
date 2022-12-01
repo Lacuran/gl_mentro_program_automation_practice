@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Panda Test Demo">
+    <test name="1, 2, 3, additional test 4" parallel="classes">
+        <classes>
+            <class name="refactored.test.PageObjectVerifyTheItemsInMobileListTest"/>
+            <class name="refactored.test.PageObjectVerifyCostOfProductTest"/>
+            <class name="refactored.test.PageObjectVerifyShoppingCartTest"/>
+            <class name="refactored.test.PageObjectVerifySortFunctionalityWorksAsExpectedTest"/>
+        </classes>
+    </test>
+
+    <test name="4, 5, 6" parallel="classes">
+        <classes>
+            <class name="refactored.test.PageObjectVerifyTheComparePopUpWindowTest"/>
+            <class name="refactored.test.PageObjectVerifyWishlistTest"/>
+            <class name="refactored.test.PageObjectVerifyPurchaseOfAProductTest"/>
+        </classes>
+    </test>
+
+    <test name="8">
+        <classes>
+            <class name="refactored.test.PageObjectVerifyChangeOrReorderPreviouslyAddedProductTest"/>
+        </classes>
+    </test>
+
+    <test name="login test">
+        <classes>
+            <class name="refactored.test.PageObjectVerifyLoginTest"/>
+        </classes>
+    </test>
+</suite>
+

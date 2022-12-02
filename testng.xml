@@ -2,39 +2,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Panda Test Demo">
-    <test name="1, 2, 3, additional test 4" parallel="classes">
+    <test name="Independent Test Parallel" parallel="classes">
         <classes>
-            <class name="refactored.test.PageObjectVerifyTheItemsInMobileListTest"/>
-            <class name="refactored.test.PageObjectVerifyCostOfProductTest"/>
-            <class name="refactored.test.PageObjectVerifyShoppingCartTest"/>
-
+            <class name="refactored.test.PageObjectVerifyLoginTest"/><!--login test-->
+            <class name="refactored.test.PageObjectVerifyTheItemsInMobileListTest"/><!--1-->
+            <class name="refactored.test.PageObjectVerifyCostOfProductTest"/><!--2-->
+            <class name="refactored.test.PageObjectVerifyShoppingCartTest"/><!--3-->
+            <class name="refactored.test.PageObjectVerifyTheComparePopUpWindowTest"/><!--4-->
+            <class name="refactored.test.PageObjectVerifyWishlistTest"/><!--5-->
+            <class name="refactored.test.PageObjectVerifySortFunctionalityWorksAsExpectedTest"/><!--4+-->
         </classes>
     </test>
 
-    <test name="additional test 4">
+    <test name="Dependent test - no parallel">
         <classes>
-            <class name="refactored.test.PageObjectVerifySortFunctionalityWorksAsExpectedTest"/>
+            <class name="refactored.test.PageObjectVerifyPurchaseOfAProductTest"/><!--6-->
+            <class name="refactored.test.PageObjectVerifyChangeOrReorderPreviouslyAddedProductTest"/><!--8-->
         </classes>
     </test>
 
-    <test name="4, 5, 6" parallel="classes">
-        <classes>
-            <class name="refactored.test.PageObjectVerifyTheComparePopUpWindowTest"/>
-            <class name="refactored.test.PageObjectVerifyWishlistTest"/>
-            <class name="refactored.test.PageObjectVerifyPurchaseOfAProductTest"/>
-        </classes>
-    </test>
-
-    <test name="8">
-        <classes>
-            <class name="refactored.test.PageObjectVerifyChangeOrReorderPreviouslyAddedProductTest"/>
-        </classes>
-    </test>
-
-    <test name="login test">
-        <classes>
-            <class name="refactored.test.PageObjectVerifyLoginTest"/>
-        </classes>
-    </test>
 </suite>
-

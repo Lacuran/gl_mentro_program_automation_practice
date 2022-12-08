@@ -13,7 +13,7 @@ public class PageObjectVerifyShoppingCartTest extends BaseTestSetup {
         //variables
         PandaHomePage homePage = new PandaHomePage(driver);
         String expectedErrorMsg = "Some of the products cannot be ordered in requested quantity.";
-        String expectedEmptyCartMsg = "SHOPPING CART IS EMPTY";
+        String expectedEmptyCartMsg = "SHOPPING CART IS EMPT";
 
         homePage.clickMobileLink()
                 .addToCart()

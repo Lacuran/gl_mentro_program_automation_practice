@@ -1,13 +1,15 @@
 package base.test;
 
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 @Slf4j
-public class BaseTestSetup {
+public class BaseTestSetup{
 
     final String URL = "http://live.techpanda.org/";
     public WebDriver driver;
@@ -27,5 +29,16 @@ public class BaseTestSetup {
     public void cleanUp() {
         log.info("Cleanup Driver");
         driver.quit();
+    }
+
+    public void highlightElement(WebDriver driver, WebElement elment) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].style.border='4px groove red'", elment);
+            Thread.sleep(1000);
+            js.executeScript("arguments[0].style.border=''", elment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

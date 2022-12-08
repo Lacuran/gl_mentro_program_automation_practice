@@ -30,6 +30,7 @@ public class CommonPageElements {
     }
 
     public ShoppingCartPage openCart() {
+        log.info("Opening Cart");
         driver.findElement(accountButton).click();
         driver.findElement(myCartButton).click();
         return new ShoppingCartPage(driver);

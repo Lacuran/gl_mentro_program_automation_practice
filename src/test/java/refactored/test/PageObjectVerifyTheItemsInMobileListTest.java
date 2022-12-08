@@ -2,13 +2,15 @@ package refactored.test;
 
 import base.test.BaseTestSetup;
 import lombok.extern.slf4j.Slf4j;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import panda.pages.ProductListingPage;
 import panda.pages.PandaHomePage;
+import panda.pages.ProductListingPage;
 
 import static org.testng.Assert.assertEquals;
 
 @Slf4j
+@Listeners(utility.TestListener.class)
 public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
 
     @Test(description = "1")
@@ -16,7 +18,7 @@ public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
 
         PandaHomePage homePage = new PandaHomePage(driver);
         String expectedTitle = "Home page";
-        String mobileExpectedTitle = "Mobile";
+        String mobileExpectedTitle = "Mobil";
 
         log.info("2.Verify the title of the page");
         assertEquals(homePage.getPageTitle(), expectedTitle);

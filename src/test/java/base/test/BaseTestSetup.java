@@ -31,12 +31,13 @@ public class BaseTestSetup{
         driver.quit();
     }
 
-    public void highlightElement(WebDriver driver, WebElement elment) {
+    public void highlightElement(WebDriver driver, WebElement element) {
+        //TODO implement this to all test cases
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].style.border='4px groove red'", elment);
+            js.executeScript("arguments[0].style.border='4px groove red'", element);
             Thread.sleep(1000);
-            js.executeScript("arguments[0].style.border=''", elment);
+            js.executeScript("arguments[0].style.border=''", element);
         } catch (Exception e) {
             e.printStackTrace();
         }

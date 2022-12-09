@@ -24,7 +24,7 @@ WebDriver driver;
                 .replace(" ", "_");
 
         try {
-            FileUtils.copyFile(srcFile, new File("C:\\Screenshots_from_test\\"
+            FileUtils.copyFile(srcFile, new File("target/screenshots/"
                     + testMethodName + "_" + TimeStamp + ".png"));
         } catch (IOException e) {
             e.printStackTrace();

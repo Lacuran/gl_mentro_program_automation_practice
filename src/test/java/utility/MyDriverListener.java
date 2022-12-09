@@ -17,31 +17,19 @@ public class MyDriverListener implements WebDriverListener {
 
     @Override
     public void beforeAnyWebElementCall(WebElement element, Method method, Object[] args) {
-        try {
-            highlightElement(driver, element);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        highlightElement(driver, element);
     }
 
     @Override
     public void afterAnyWebElementCall(WebElement element, Method method, Object[] args, Object result) {
-        try {
-            highlightElement(driver, element);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        highlightElement(driver, element);
     }
 
     private void highlightElement(WebDriver driver, WebElement element) {
-        try {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].style.border='4px groove red'", element);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].style.border='4px groove red'", element);
 //            Thread.sleep(500);
 //            js.executeScript("arguments[0].style.border=''", element);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 }

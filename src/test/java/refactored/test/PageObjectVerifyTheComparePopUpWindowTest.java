@@ -14,7 +14,7 @@ public class PageObjectVerifyTheComparePopUpWindowTest extends BaseTestSetup {
         String[] phoneArray = {"IPhone", "Sony Xperia", "Samsung Galaxy"};
         String expectedPopupTitle = "COMPARE PRODUCTS";
         String expectedMobilePageTitle = "Mobile";
-        PandaHomePage homePage = new PandaHomePage(driver);
+        PandaHomePage homePage = new PandaHomePage(decorated);
 
         homePage.clickMobileLink()
                 .addToCompare(phoneArray)

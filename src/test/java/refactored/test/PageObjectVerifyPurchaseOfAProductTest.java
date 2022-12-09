@@ -32,7 +32,7 @@ public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
     @Test(groups = "purchase", description = "6")
     public void verifyUserIsAbleToPurchaseProductUsingRegisteredEmailTest() {
 
-        PandaHomePage homePage = new PandaHomePage(driver);
+        PandaHomePage homePage = new PandaHomePage(decorated);
         Faker faker = new Faker();
 
         String assertionShippingPriceMSG = "Check shipping price";

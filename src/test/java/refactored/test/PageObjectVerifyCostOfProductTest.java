@@ -24,7 +24,7 @@ public class PageObjectVerifyCostOfProductTest extends BaseTestSetup {
 
     @Test(dataProvider = "smartphone", description = "2")
     public void verifyCostOfProductInListPageAndDetailsPageTest(String phoneName) {
-        PandaHomePage homePage = new PandaHomePage(driver);
+        PandaHomePage homePage = new PandaHomePage(decorated);
 
         log.info("2. Click on the 'MOBILE' menu");
         ProductListingPage productListingPage = homePage.clickMobileLink();

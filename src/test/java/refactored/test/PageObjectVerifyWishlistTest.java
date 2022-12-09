@@ -21,7 +21,7 @@ public class PageObjectVerifyWishlistTest extends BaseTestSetup {
         String expectedMsg = "Your Wishlist has been shared.";
         String errorAssertSharingMSG = "Check share Msg";
 
-        PandaHomePage homePage = new PandaHomePage(driver);
+        PandaHomePage homePage = new PandaHomePage(decorated);
 
         homePage.clickMyAccountLink()
                 .clickCreateAccountPage()

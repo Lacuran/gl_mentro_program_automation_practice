@@ -13,7 +13,7 @@ public class PageObjectVerifyChangeOrReorderPreviouslyAddedProductTest extends B
     @Test(description = "8")
     public void verifyYouAreAbleToChangeOrReorderPreviouslyAddedProductTest() {
 
-        PandaHomePage homePage = new PandaHomePage(driver);
+        PandaHomePage homePage = new PandaHomePage(decorated);
         Faker faker = new Faker();
         User user = User.createUserFrom("Userdata1.json").setEmail("lenrok.test1@gmail.com");
         String expectedGrandTotalPrice = "$6,150.00";

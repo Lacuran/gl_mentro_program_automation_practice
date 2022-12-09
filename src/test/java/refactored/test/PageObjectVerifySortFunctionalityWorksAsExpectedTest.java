@@ -13,7 +13,7 @@ public class PageObjectVerifySortFunctionalityWorksAsExpectedTest extends BaseTe
     @Test(description = "additional test '4'")
     public void sortFunctionalityWorksAsExpected() {
 
-        PandaHomePage homePage = new PandaHomePage(driver);
+        PandaHomePage homePage = new PandaHomePage(decorated);
 
         homePage.clickAdvanceSearchLink()
                 .enterPriceRange("0", "150")

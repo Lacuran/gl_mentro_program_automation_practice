@@ -3,21 +3,25 @@ package base.test;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
+import org.openqa.selenium.support.events.WebDriverListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import utility.HighlightHelper;
+import utility.MyDriverListener;
 
 @Slf4j
 public class BaseTestSetup {
 
     final String URL = "http://live.techpanda.org/";
     public WebDriver driver;
+    public WebDriverListener listener;
     public WebDriver decorated;
 
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        decorated = new HighlightHelper().decorate(driver);
+        listener = new MyDriverListener(driver);
+        decorated = new EventFiringDecorator<>(listener).decorate(driver);
 
         log.info("WebDriver Initialization");
         decorated.manage().window().maximize();

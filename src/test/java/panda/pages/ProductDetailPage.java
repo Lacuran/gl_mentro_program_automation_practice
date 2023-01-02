@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ public class ProductDetailPage {
         this.driver = driver;
     }
 
+    @Step
     public String getProductCost() {
         log.info("Getting price from details page");
         return driver.findElement(productPrice).getText();

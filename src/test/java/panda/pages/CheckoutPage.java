@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.stream.IntStream;
+
 @Slf4j
 public class CheckoutPage {
 
@@ -29,14 +31,16 @@ public class CheckoutPage {
         this.driver = driver;
     }
 
-    public CheckoutPage selectNewBillingAddress(String newAddress){
+    @Step
+    public CheckoutPage selectNewBillingAddress(String newAddress) {
         log.info("Selecting new Billing Address");
         Select newAddressSelect = new Select(driver.findElement(billingAddressSelector));
         newAddressSelect.selectByVisibleText(newAddress);
         return this;
     }
 
-    public CheckoutPage fillNewBillingInformation(String[] shippingData, String shippingCountryShortcut){
+    @Step
+    public CheckoutPage fillNewBillingInformation(String[] shippingData, String shippingCountryShortcut) {
         log.info("Filling new billing information");
         Select shippingCountry = new Select(driver.findElement(countrySelectID));
         IntStream.range(0, shippingData.length)
@@ -47,41 +51,47 @@ public class CheckoutPage {
         return this;
     }
 
-    public CheckoutPage clickBillingInformationContinueButton(){
+    @Step
+    public CheckoutPage clickBillingInformationContinueButton() {
         log.info("Click continue button on billing information");
         driver.findElement(continueButtonBillingInformation).click();
         return this;
     }
 
-    public CheckoutPage clickShippingInformationContinueButton(){
+    @Step
+    public CheckoutPage clickShippingInformationContinueButton() {
         log.info("Click shipping information continue button");
         explicitWait().until(ExpectedConditions.visibilityOfElementLocated(continueButtonShippingMethod));
         driver.findElement(continueButtonShippingMethod).click();
         return this;
     }
 
-    public CheckoutPage selectCheckMoneyRadioButton(){
+    @Step
+    public CheckoutPage selectCheckMoneyRadioButton() {
         log.info("Select Check/Money radio button");
         explicitWait().until(ExpectedConditions.visibilityOfElementLocated(checkMoneyRadioButton));
         driver.findElement(checkMoneyRadioButton).click();
         return this;
     }
 
-    public CheckoutPage clickPaymentInformationContinueButton(){
+    @Step
+    public CheckoutPage clickPaymentInformationContinueButton() {
         log.info("Click payment information continue button");
         explicitWait().until(ExpectedConditions.visibilityOfElementLocated(continueButtonPaymentInformation));
         driver.findElement(continueButtonPaymentInformation).click();
         return this;
     }
 
-    public PlacedOrderPage clickPlaceOrderButton(){
+    @Step
+    public PlacedOrderPage clickPlaceOrderButton() {
         log.info("Click place order button");
         explicitWait().until(ExpectedConditions.visibilityOfElementLocated(placeOrderButton));
         driver.findElement(placeOrderButton).click();
         return new PlacedOrderPage(driver);
     }
 
-    private WebDriverWait explicitWait(){
+    @Step
+    private WebDriverWait explicitWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 }

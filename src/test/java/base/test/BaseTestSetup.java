@@ -1,5 +1,6 @@
 package base.test;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,6 +19,7 @@ public class BaseTestSetup {
     public WebDriver driver;
 
     @BeforeMethod
+    @Step
     public void setUp() {
         driver1 = new ChromeDriver();
         listener = new MyDriverListener(driver1);
@@ -31,6 +33,7 @@ public class BaseTestSetup {
     }
 
     @AfterMethod
+    @Step
     public void cleanUp() {
         log.info("Cleanup Driver");
         driver.quit();

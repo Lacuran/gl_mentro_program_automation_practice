@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,6 +37,7 @@ public class ShoppingCartPage {
         this.driver = driver;
     }
 
+    @Step
     public ShoppingCartPage changeQtyAndClickUpdate(String Quantity) {
         log.info("Changing Quantity to " + Quantity);
         driver.findElement(quantityInput).clear();
@@ -44,6 +46,7 @@ public class ShoppingCartPage {
         return this;
     }
 
+    @Step
     public ShoppingCartPage emptyShoppingCart() {
         log.info("Emptying shopping cart");
         if (!driver.findElement(pageTitle).getText().equalsIgnoreCase("SHOPPING CART IS EMPTY")) {
@@ -52,6 +55,7 @@ public class ShoppingCartPage {
         return this;
     }
 
+    @Step
     public ShoppingCartPage fillShippingAndTaxField(String country, String region, String zipCode) {
         log.info("Filling Shipping and Tax field");
         Select countrySelect = new Select(driver.findElement(selectorForCountry));
@@ -61,48 +65,56 @@ public class ShoppingCartPage {
         return this;
     }
 
+    @Step
     public ShoppingCartPage clickEstimateLink() {
         log.info("Click Estimate link");
         driver.findElement(estimateButton).click();
         return this;
     }
 
+    @Step
     public ShoppingCartPage selectRadioButton() {
         log.info("Selecting price on Radio buttons");
         driver.findElement(radioButton).click();
         return this;
     }
 
+    @Step
     public ShoppingCartPage clickUpdateTotalLink() {
         log.info("Click Update total");
         driver.findElement(updateTotalButton).click();
         return this;
     }
 
+    @Step
     public CheckoutPage clickCheckoutButton() {
         log.info("Click Checkout button");
         driver.findElement(checkoutButton).click();
         return new CheckoutPage(driver);
     }
 
+    @Step
     public ShoppingCartPage verifyTheCartIsEmpty(String expectedMSG, String assertionErrorMessage) {
         log.info("Assert Cart is Empty");
         assertEquals(driver.findElement(emptyCartMsg).getText(), expectedMSG, assertionErrorMessage);
         return this;
     }
 
+    @Step
     public ShoppingCartPage assertErrorMSG(String expectedMSG, String assertionErrorMessage) {
         log.info("Assert Error MSG");
         assertEquals(driver.findElement(errorMsgPopUp).getText(), expectedMSG, assertionErrorMessage);
         return this;
     }
 
+    @Step
     public ShoppingCartPage assertShippingCost(String expectedCost, String assertionErrorMessage) {
         log.info("Assert Shipping Cost");
         assertEquals(driver.findElement(shippingPrice).getText(), expectedCost, assertionErrorMessage);
         return this;
     }
 
+    @Step
     public ShoppingCartPage assertTotalShippingCost(String expectedTotalPrice, String assertionErrorMessage) {
         log.info("Assert Total Shipping Cost");
         assertEquals(driver.findElement(totalPriceXPath).getText(), expectedTotalPrice, assertionErrorMessage);

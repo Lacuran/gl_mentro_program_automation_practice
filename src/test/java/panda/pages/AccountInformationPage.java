@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,7 @@ public class AccountInformationPage {
         this.driver = driver;
     }
 
+    @Step
     public AccountInformationPage editUserInformation(String[] editInfoData) {
         log.info("Editing User Information");
         IntStream.range(0, 3).forEach(i -> driver.findElement(editInfoID[i]).clear());
@@ -24,7 +26,8 @@ public class AccountInformationPage {
         return this;
     }
 
-    public MyAccountPage clickSaveButton(){
+    @Step
+    public MyAccountPage clickSaveButton() {
         log.info("Click Save Button");
         driver.findElement(saveButtonCssSelector).click();
         return new MyAccountPage(driver);

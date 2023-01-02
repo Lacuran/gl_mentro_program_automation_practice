@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,7 @@ public class ShareWishlistPage {
         this.driver = driver;
     }
 
+    @Step
     public MyWishlistPage shareWishlist(User user) {
         log.info("Sharing My Wishlist using User class");
         driver.findElement(shareWishlistEmail).sendKeys(user.getEmail());
@@ -23,6 +25,7 @@ public class ShareWishlistPage {
         return new MyWishlistPage(driver);
     }
 
+    @Step
     public MyWishlistPage shareWishlist(String email) {
         log.info("Sharing My Wishlist using provided email");
         driver.findElement(shareWishlistEmail).sendKeys(email);

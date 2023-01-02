@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.locators.RelativeLocator;
 import utility.User;
 
 import java.util.stream.IntStream;
+
 @Slf4j
 public class CustomerLoginPage {
 
@@ -19,20 +21,24 @@ public class CustomerLoginPage {
         this.driver = driver;
     }
 
-    public CreateNewCustomerPage clickCreateAccountPage(){
+    @Step
+    public CreateNewCustomerPage clickCreateAccountPage() {
         log.info("Click Create Account button");
         driver.findElement(createAccButton).click();
         return new CreateNewCustomerPage(driver);
     }
+
+    @Step
     public CustomerLoginPage fillingLoginData(User user) {
         log.info("Filling Data login");
-        String[] loginData ={user.getEmail(), user.getPassword()};
+        String[] loginData = {user.getEmail(), user.getPassword()};
         IntStream.range(0, loginData.length)
                 .forEach(i -> driver.findElement(loginID[i]).sendKeys(loginData[i]));
         return this;
     }
 
-    public MyAccountPage clickLoginButton(){
+    @Step
+    public MyAccountPage clickLoginButton() {
         log.info("Click login button");
         driver.findElement(loginButton).click();
         return new MyAccountPage(driver);

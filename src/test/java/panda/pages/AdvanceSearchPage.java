@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,26 +22,30 @@ public class AdvanceSearchPage {
         this.driver = driver;
     }
 
-    public AdvanceSearchPage enterPriceRange(String startPrice, String endPrice){
+    @Step
+    public AdvanceSearchPage enterPriceRange(String startPrice, String endPrice) {
         log.info("Entering Prince Range");
         driver.findElement(priceStartingRange).sendKeys(startPrice);
         driver.findElement(priceEndRange).sendKeys(endPrice);
         return this;
     }
 
-    public AdvanceSearchPage clickSearchButton(){
+    @Step
+    public AdvanceSearchPage clickSearchButton() {
         log.info("Click search button");
         driver.findElement(searchButton).click();
         return this;
     }
 
-    public AdvanceSearchPage clickAdvanceSearchLink(){
+    @Step
+    public AdvanceSearchPage clickAdvanceSearchLink() {
         log.info("Click Advance Search Link");
         driver.findElement(advanceSearchLink).click();
         return this;
     }
 
-    public AdvanceSearchPage getSearchResult(){
+    @Step
+    public AdvanceSearchPage getSearchResult() {
         log.info("Getting search result");
         List<String> searchResult = driver.findElements(productNameXPath).stream()
                 .map(ele -> ele.getAttribute("title"))

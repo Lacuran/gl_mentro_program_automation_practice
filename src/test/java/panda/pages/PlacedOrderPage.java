@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ public class PlacedOrderPage {
         this.driver = driver;
     }
 
+    @Step
     public PlacedOrderPage assertOrderIsGenerated(String expectedOrderMSG, String assertionErrorMessage) {
         log.info("Assert Order is Generated");
         explicitWait().until(ExpectedConditions.titleIs(placeOrderPageTitle));
@@ -28,11 +30,13 @@ public class PlacedOrderPage {
         return this;
     }
 
+    @Step
     public String getPlaceOrderPageTitleTitle() {
         log.info("Getting Placed Order page title");
         return driver.getTitle();
     }
 
+    @Step
     private WebDriverWait explicitWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(5));
     }

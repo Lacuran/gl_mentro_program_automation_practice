@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,18 +19,21 @@ public class PandaHomePage extends CommonPageElements {
         super(driver);
     }
 
+    @Step
     public ProductListingPage clickMobileLink() {
         log.info("Click Mobile link");
         driver.findElement(mobileLink).click();
         return new ProductListingPage(driver);
     }
 
+    @Step
     public ProductListingPage clickTVLink() {
         log.info("Click TV link");
         driver.findElement(tvXpath).click();
         return new ProductListingPage(driver);
     }
 
+    @Step
     public CustomerLoginPage clickMyAccountLink() {
         log.info("Click My Account link");
         driver.findElement(accountCssSelector).click();
@@ -37,6 +41,7 @@ public class PandaHomePage extends CommonPageElements {
         return new CustomerLoginPage(driver);
     }
 
+    @Step
     public AdvanceSearchPage clickAdvanceSearchLink() {
         log.info("Click Advance Search Link");
         driver.findElement(advanceSearchLink).click();

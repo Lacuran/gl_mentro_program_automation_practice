@@ -1,5 +1,6 @@
 package panda.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +36,7 @@ public class MyAccountPage extends CommonPageElements {
         super(driver);
     }
 
+    @Step
     public MyAccountPage assertRegistration(String expectedRegistrationMsg, String assertionErrorMSG) {
         log.info("Assert Registration");
         assertEquals(driver.findElement(registrationDoneText).getText(), expectedRegistrationMsg
@@ -42,24 +44,28 @@ public class MyAccountPage extends CommonPageElements {
         return this;
     }
 
+    @Step
     public ProductListingPage clickMobileLink() {
         log.info("Click Mobile Link");
         driver.findElement(mobileLink).click();
         return new ProductListingPage(driver);
     }
 
+    @Step
     public ProductListingPage clickTVLink() {
         log.info("Click TV Link");
         driver.findElement(tvXpath).click();
         return new ProductListingPage(driver);
     }
 
+    @Step
     public MyWishlistPage clickMyWishListLink() {
         log.info("Click My Wishlist");
         driver.findElement(myWishlistSelector).click();
         return new MyWishlistPage(driver);
     }
 
+    @Step
     public PandaHomePage logOut() {
         log.info("Click Log Out");
         driver.findElement(accountCssSelector).click();
@@ -68,28 +74,33 @@ public class MyAccountPage extends CommonPageElements {
         return new PandaHomePage(driver);
     }
 
+    @Step
     public AccountInformationPage clickAccountInformationLink() {
         log.info("Click Account Information");
         driver.findElement(accInfoXPath).click();
         return new AccountInformationPage(driver);
     }
 
+    @Step
     public String getWelcomeMSG() {
         log.info("Getting Welcome message");
         return driver.findElement(welcomeMsg).getText();
     }
 
+    @Step
     public String getSuccessEditInfoMSG() {
         log.info("Getting Success MSG");
         return driver.findElement(successMsgCssSelector).getText();
     }
 
+    @Step
     public ShoppingCartPage clickReorderLink() {
         log.info("Click Reorder Link");
         driver.findElement(reorderButton).click();
         return new ShoppingCartPage(driver);
     }
 
+    @Step
     private WebDriverWait explicitWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(10));
     }

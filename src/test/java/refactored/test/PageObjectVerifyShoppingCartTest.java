@@ -13,7 +13,7 @@ public class PageObjectVerifyShoppingCartTest extends BaseTestSetup {
     @Test(description = "3")
     public void verifyThatYouCannotAddMoreProductInCartThanTheProductAvailableInTheStore() {
         //variables
-        PandaHomePage homePage = new PandaHomePage(decorated);
+        PandaHomePage homePage = new PandaHomePage(driver);
         String expectedErrorMsg = "Some of the products cannot be ordered in requested quantity.";
         String expectedEmptyCartMsg = "SHOPPING CART IS EMPT";
 

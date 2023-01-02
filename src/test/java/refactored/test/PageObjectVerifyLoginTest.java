@@ -19,7 +19,7 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
 
     @Test(groups = "login", priority = 1, description = "self-assignment")
     public void verifyIfUserIsLoggedSuccessfully() {
-        PandaHomePage homePage = new PandaHomePage(decorated);
+        PandaHomePage homePage = new PandaHomePage(driver);
         MyAccountPage myAccountPage = homePage.clickMyAccountLink()
                 .fillingLoginData(user1)
                 .clickLoginButton();
@@ -30,7 +30,7 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
 
     @Test(groups = "login", priority = 2)
     public void verifyUserLogout() {
-        PandaHomePage homePage = new PandaHomePage(decorated);
+        PandaHomePage homePage = new PandaHomePage(driver);
         String expectedPageTitle = "Home page";
         homePage.clickMyAccountLink()
                 .fillingLoginData(user1)
@@ -44,7 +44,7 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
     @Test(groups = "login", priority = 3)
     public void verifyEditOfUserInformation() {
 
-        PandaHomePage homePage = new PandaHomePage(decorated);
+        PandaHomePage homePage = new PandaHomePage(driver);
         String[] editInfoData = {user2.getFirstName(), user2.getMiddleName(), user2.getLastName(), user2.getPassword()};
         String expectedSuccessMsg = "The account information has been saved.";
         String expectedWelcomeMSG = String.format("Hello, %s %s %s!", editInfoData[0], editInfoData[1], editInfoData[2]);
@@ -69,7 +69,7 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
 
         log.info("Preparing account information");
         setUp();
-        PandaHomePage homePage = new PandaHomePage(driver);
+        PandaHomePage homePage = new PandaHomePage(driver1);
         MyAccountPage myAccountPage = homePage.clickMyAccountLink()
                 .fillingLoginData(user1)
                 .clickLoginButton()

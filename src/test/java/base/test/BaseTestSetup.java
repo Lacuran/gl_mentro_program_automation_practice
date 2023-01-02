@@ -13,27 +13,27 @@ import utility.MyDriverListener;
 public class BaseTestSetup {
 
     final String URL = "http://live.techpanda.org/";
-    public WebDriver driver;
+    public WebDriver driver1;
     public WebDriverListener listener;
-    public WebDriver decorated;
+    public WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        listener = new MyDriverListener(driver);
-        decorated = new EventFiringDecorator<>(listener).decorate(driver);
+        driver1 = new ChromeDriver();
+        listener = new MyDriverListener(driver1);
+        driver = new EventFiringDecorator<>(listener).decorate(driver1);
 
         log.info("WebDriver Initialization");
-        decorated.manage().window().maximize();
+        driver.manage().window().maximize();
 
         log.info("1. Go to http://live.techpanda.org/");
-        decorated.get(URL);
+        driver.get(URL);
     }
 
     @AfterMethod
     public void cleanUp() {
         log.info("Cleanup Driver");
-        decorated.quit();
+        driver.quit();
     }
 
 }

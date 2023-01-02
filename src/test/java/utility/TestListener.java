@@ -25,20 +25,18 @@ WebDriver driver;
 
         try {
             FileUtils.copyFile(srcFile, new File("target/screenshots/"
-                    + testMethodName + "_" + TimeStamp + ".png"));
+                        + testMethodName + "_" + TimeStamp + ".png"));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         log.info("Test Failed need evidence");
-        this.driver = ((BaseTestSetup)result.getInstance()).driver;
-        try {
-            takeScreenshot(result.getName());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        this.driver = ((BaseTestSetup)result.getInstance()).driver1;
+        takeScreenshot(result.getName());
+
     }
 }

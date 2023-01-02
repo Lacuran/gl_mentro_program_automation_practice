@@ -16,7 +16,7 @@ public class PageObjectVerifyTheItemsInMobileListTest extends BaseTestSetup {
     @Test(description = "1")
     public void verifyItemInTheMobileListPageCanBeShortedByNameTest() {
 
-        PandaHomePage homePage = new PandaHomePage(decorated);
+        PandaHomePage homePage = new PandaHomePage(driver);
         String expectedTitle = "Home page";
         String mobileExpectedTitle = "Mobile";
 

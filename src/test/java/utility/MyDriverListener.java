@@ -20,16 +20,10 @@ public class MyDriverListener implements WebDriverListener {
         highlightElement(driver, element);
     }
 
-    @Override
-    public void afterAnyWebElementCall(WebElement element, Method method, Object[] args, Object result) {
-        highlightElement(driver, element);
-    }
-
     private void highlightElement(WebDriver driver, WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].style.border='4px groove red'", element);
-//            Thread.sleep(500);
-//            js.executeScript("arguments[0].style.border=''", element);
+
     }
 
 }

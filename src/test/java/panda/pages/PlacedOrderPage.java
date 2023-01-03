@@ -22,7 +22,7 @@ public class PlacedOrderPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Assert Order is Generated")
     public PlacedOrderPage assertOrderIsGenerated(String expectedOrderMSG, String assertionErrorMessage) {
         log.info("Assert Order is Generated");
         explicitWait().until(ExpectedConditions.titleIs(placeOrderPageTitle));
@@ -30,13 +30,13 @@ public class PlacedOrderPage {
         return this;
     }
 
-    @Step
+    @Step("Getting Placed Order page title")
     public String getPlaceOrderPageTitleTitle() {
         log.info("Getting Placed Order page title");
         return driver.getTitle();
     }
 
-    @Step
+    @Step("Explicit wait come into play")
     private WebDriverWait explicitWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(5));
     }

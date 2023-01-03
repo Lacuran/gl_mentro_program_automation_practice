@@ -37,7 +37,7 @@ public class ShoppingCartPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Changing Quantity")
     public ShoppingCartPage changeQtyAndClickUpdate(String Quantity) {
         log.info("Changing Quantity to " + Quantity);
         driver.findElement(quantityInput).clear();
@@ -46,7 +46,7 @@ public class ShoppingCartPage {
         return this;
     }
 
-    @Step
+    @Step("Emptying shopping cart")
     public ShoppingCartPage emptyShoppingCart() {
         log.info("Emptying shopping cart");
         if (!driver.findElement(pageTitle).getText().equalsIgnoreCase("SHOPPING CART IS EMPTY")) {
@@ -55,7 +55,7 @@ public class ShoppingCartPage {
         return this;
     }
 
-    @Step
+    @Step("Filling Shipping and Tax field")
     public ShoppingCartPage fillShippingAndTaxField(String country, String region, String zipCode) {
         log.info("Filling Shipping and Tax field");
         Select countrySelect = new Select(driver.findElement(selectorForCountry));
@@ -65,56 +65,56 @@ public class ShoppingCartPage {
         return this;
     }
 
-    @Step
+    @Step("Click Estimate link")
     public ShoppingCartPage clickEstimateLink() {
         log.info("Click Estimate link");
         driver.findElement(estimateButton).click();
         return this;
     }
 
-    @Step
+    @Step("Selecting price on Radio buttons")
     public ShoppingCartPage selectRadioButton() {
         log.info("Selecting price on Radio buttons");
         driver.findElement(radioButton).click();
         return this;
     }
 
-    @Step
+    @Step("Click Update total")
     public ShoppingCartPage clickUpdateTotalLink() {
         log.info("Click Update total");
         driver.findElement(updateTotalButton).click();
         return this;
     }
 
-    @Step
+    @Step("Click Checkout button")
     public CheckoutPage clickCheckoutButton() {
         log.info("Click Checkout button");
         driver.findElement(checkoutButton).click();
         return new CheckoutPage(driver);
     }
 
-    @Step
+    @Step("Assert Cart is Empty")
     public ShoppingCartPage verifyTheCartIsEmpty(String expectedMSG, String assertionErrorMessage) {
         log.info("Assert Cart is Empty");
         assertEquals(driver.findElement(emptyCartMsg).getText(), expectedMSG, assertionErrorMessage);
         return this;
     }
 
-    @Step
+    @Step("Assert Error MSG")
     public ShoppingCartPage assertErrorMSG(String expectedMSG, String assertionErrorMessage) {
         log.info("Assert Error MSG");
         assertEquals(driver.findElement(errorMsgPopUp).getText(), expectedMSG, assertionErrorMessage);
         return this;
     }
 
-    @Step
+    @Step("Assert Shipping Cost")
     public ShoppingCartPage assertShippingCost(String expectedCost, String assertionErrorMessage) {
         log.info("Assert Shipping Cost");
         assertEquals(driver.findElement(shippingPrice).getText(), expectedCost, assertionErrorMessage);
         return this;
     }
 
-    @Step
+    @Step("Assert Total Shipping Cost")
     public ShoppingCartPage assertTotalShippingCost(String expectedTotalPrice, String assertionErrorMessage) {
         log.info("Assert Total Shipping Cost");
         assertEquals(driver.findElement(totalPriceXPath).getText(), expectedTotalPrice, assertionErrorMessage);

@@ -31,47 +31,47 @@ public class ProductListingPage extends CommonPageElements {
                 .orElseThrow();
     }
 
-    @Step
+    @Step("Getting Data on phoneName")
     private By phoneCssSelector(String phoneName) {
         log.info("Getting Data on " + phoneName);
         return By.cssSelector("[title='" + phoneName + "']");
     }
 
-    @Step
+    @Step("Selecting by Name sorting")
     public void clickSelectByNameDropdown() {
         log.info("Selecting by Name sorting");
         Select selectByName = new Select(driver.findElement(selectByNameDropdown));
         selectByName.selectByVisibleText("Name");
     }
 
-    @Step
+    @Step("Getting Mobile list")
     public List<String> getMobileList() {
         log.info("Getting Mobile list");
         return driver.findElements(By.xpath("//*[@class='product-image']")).stream()
                 .map(ele -> ele.getAttribute("title")).toList();
     }
 
-    @Step
+    @Step("Getting phone price")
     public String getPhoneCostString(String phoneName) {
         log.info("Getting " + phoneName + " price");
         return driver.findElement(RelativeLocator.with(phonePrice).below(phoneCssSelector(phoneName))).getText();
     }
 
-    @Step
+    @Step("Clicking phone Css Selector")
     public ProductDetailPage clickPhoneCssSelector(String phoneName) {
         log.info("Clicking " + phoneName + " Css Selector");
         driver.findElement(phoneCssSelector(phoneName)).click();
         return new ProductDetailPage(driver);
     }
 
-    @Step
+    @Step("Click Add to Cart button")
     public ShoppingCartPage addToCart() {
         log.info("Click Add to Cart button");
         driver.findElements(addToCartCss).stream().findAny().orElseThrow().click();
         return new ShoppingCartPage(driver);
     }
 
-    @Step
+    @Step("Adding phone to compare")
     private void addPhoneToCompare(String phoneName) {
         log.info("Adding " + phoneName + " to compare");
         driver.findElement(RelativeLocator.with(addToCompareButton)
@@ -80,21 +80,21 @@ public class ProductListingPage extends CommonPageElements {
 
     }
 
-    @Step
+    @Step("Click Add to compare button")
     public ProductListingPage addToCompare(String[] phoneArray) {
         log.info("Click Add to compare button");
         Arrays.stream(phoneArray).forEach(phoneName -> addPhoneToCompare(phoneName));
         return this;
     }
 
-    @Step
+    @Step("Click Compare button")
     public ProductListingPage clickOnCompareButton() {
         log.info("Click Compare button");
         driver.findElement(compareButton).click();
         return this;
     }
 
-    @Step
+    @Step("Switching windows")
     public ComparePage switchToPopUp() {
         log.info("Switching windows");
         this.popup = driver.getWindowHandles()
@@ -107,14 +107,14 @@ public class ProductListingPage extends CommonPageElements {
         return new ComparePage(driver);
     }
 
-    @Step
+    @Step("Switching to Main Window")
     public ProductListingPage switchToMainWindow() {
         log.info("Switching to Main Window");
         driver.switchTo().window(mainWindowHandle);
         return this;
     }
 
-    @Step
+    @Step("Assert Mobile Page")
     public ProductListingPage assertMobilePageTitle(String expectedMobilePageTitle, String assertionErrorMessage) {
         log.info("Assert Mobile Page");
         assertEquals(getPageTitle(), expectedMobilePageTitle, assertionErrorMessage);

@@ -6,7 +6,7 @@
         <listener class-name="utility.TestListener"/>
     </listeners>
 
-    <test name="Independent Test Parallel" parallel="classes">
+    <test name="Independent Test Parallel" parallel="tests" thread-count="2">
         <classes>
             <class name="refactored.test.PageObjectVerifyTheItemsInMobileListTest"/><!--1-->
             <class name="refactored.test.PageObjectVerifyShoppingCartTest"/><!--3-->
@@ -16,7 +16,7 @@
         </classes>
     </test>
 
-    <test name="Dependent test - no parallel">
+    <test name="Dependent test - no parallel" parallel="false">
         <classes>
             <class name="refactored.test.PageObjectVerifyLoginTest"/><!--login test-->
             <class name="refactored.test.PageObjectVerifyCostOfProductTest"/><!--2-->

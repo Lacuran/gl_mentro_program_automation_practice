@@ -19,7 +19,7 @@ public class BaseTestSetup {
     public WebDriver driver;
 
     @BeforeMethod
-    @Step
+    @Step("WebDriver Initialization")
     public void setUp() {
         driver1 = new ChromeDriver();
         listener = new MyDriverListener(driver1);
@@ -33,7 +33,7 @@ public class BaseTestSetup {
     }
 
     @AfterMethod
-    @Step
+    @Step("Cleanup Driver")
     public void cleanUp() {
         log.info("Cleanup Driver");
         driver.quit();

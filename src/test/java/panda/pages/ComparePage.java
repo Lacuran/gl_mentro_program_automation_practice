@@ -22,14 +22,14 @@ public class ComparePage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Assert PopUp Page Title")
     public ComparePage assertPopUpPageTitle(String expectedPopUpTitle, String assertionErrorMessage) {
         log.info("Assert PopUp Page Title");
         softAssert.assertEquals(getPopUpPageTitle(), expectedPopUpTitle, assertionErrorMessage);
         return this;
     }
 
-    @Step
+    @Step("Assert Phones on PopUp")
     public ComparePage assertPhonesOnPopUp(String[] expectedArrayPhoneList, String assertionErrorMessage) {
         log.info("Assert Phones on PopUp");
         softAssert.assertEquals(getPhoneList(), Arrays.stream(expectedArrayPhoneList).map(ex -> ex.toUpperCase()).sorted().toList(), assertionErrorMessage);
@@ -37,7 +37,7 @@ public class ComparePage {
         return this;
     }
 
-    @Step
+    @Step("Getting Phone list")
     private List<String> getPhoneList() {
         List<WebElement> phoneNamesInThePopup = driver.findElements(By.cssSelector(".product-name"));
         List<String> phoneList = phoneNamesInThePopup.stream()
@@ -47,13 +47,13 @@ public class ComparePage {
         return phoneList;
     }
 
-    @Step
+    @Step("Getting PopUp page title")
     public String getPopUpPageTitle() {
         log.info("Getting PopUp page title");
         return driver.findElement(actualTitlePopupXpath).getText();
     }
 
-    @Step
+    @Step("Closing PopUp Window")
     public ProductListingPage closePopUpWindow() {
         log.info("Closing PopUp Window");
         driver.findElement(closePopupWindowButton).click();

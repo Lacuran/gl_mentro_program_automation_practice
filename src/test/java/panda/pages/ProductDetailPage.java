@@ -16,7 +16,7 @@ public class ProductDetailPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Getting price from details page")
     public String getProductCost() {
         log.info("Getting price from details page");
         return driver.findElement(productPrice).getText();

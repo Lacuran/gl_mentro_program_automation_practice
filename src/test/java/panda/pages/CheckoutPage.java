@@ -31,7 +31,7 @@ public class CheckoutPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Selecting new Billing Address")
     public CheckoutPage selectNewBillingAddress(String newAddress) {
         log.info("Selecting new Billing Address");
         Select newAddressSelect = new Select(driver.findElement(billingAddressSelector));
@@ -39,7 +39,7 @@ public class CheckoutPage {
         return this;
     }
 
-    @Step
+    @Step("Filling new billing information")
     public CheckoutPage fillNewBillingInformation(String[] shippingData, String shippingCountryShortcut) {
         log.info("Filling new billing information");
         Select shippingCountry = new Select(driver.findElement(countrySelectID));
@@ -51,14 +51,14 @@ public class CheckoutPage {
         return this;
     }
 
-    @Step
+    @Step("Click continue button on billing information")
     public CheckoutPage clickBillingInformationContinueButton() {
         log.info("Click continue button on billing information");
         driver.findElement(continueButtonBillingInformation).click();
         return this;
     }
 
-    @Step
+    @Step("Click shipping information continue button")
     public CheckoutPage clickShippingInformationContinueButton() {
         log.info("Click shipping information continue button");
         explicitWait().until(ExpectedConditions.visibilityOfElementLocated(continueButtonShippingMethod));
@@ -66,7 +66,7 @@ public class CheckoutPage {
         return this;
     }
 
-    @Step
+    @Step("Select Check/Money radio button")
     public CheckoutPage selectCheckMoneyRadioButton() {
         log.info("Select Check/Money radio button");
         explicitWait().until(ExpectedConditions.visibilityOfElementLocated(checkMoneyRadioButton));
@@ -74,7 +74,7 @@ public class CheckoutPage {
         return this;
     }
 
-    @Step
+    @Step("Click payment information continue button")
     public CheckoutPage clickPaymentInformationContinueButton() {
         log.info("Click payment information continue button");
         explicitWait().until(ExpectedConditions.visibilityOfElementLocated(continueButtonPaymentInformation));
@@ -82,7 +82,7 @@ public class CheckoutPage {
         return this;
     }
 
-    @Step
+    @Step("Click place order button")
     public PlacedOrderPage clickPlaceOrderButton() {
         log.info("Click place order button");
         explicitWait().until(ExpectedConditions.visibilityOfElementLocated(placeOrderButton));
@@ -90,7 +90,7 @@ public class CheckoutPage {
         return new PlacedOrderPage(driver);
     }
 
-    @Step
+    @Step("Waiting... Explicitly")
     private WebDriverWait explicitWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(5));
     }

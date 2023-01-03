@@ -17,7 +17,7 @@ public class AccountInformationPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Editing User Information")
     public AccountInformationPage editUserInformation(String[] editInfoData) {
         log.info("Editing User Information");
         IntStream.range(0, 3).forEach(i -> driver.findElement(editInfoID[i]).clear());
@@ -26,7 +26,7 @@ public class AccountInformationPage {
         return this;
     }
 
-    @Step
+    @Step("Click Save Button")
     public MyAccountPage clickSaveButton() {
         log.info("Click Save Button");
         driver.findElement(saveButtonCssSelector).click();

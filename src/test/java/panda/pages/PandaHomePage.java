@@ -19,21 +19,21 @@ public class PandaHomePage extends CommonPageElements {
         super(driver);
     }
 
-    @Step
+    @Step("Click Mobile link")
     public ProductListingPage clickMobileLink() {
         log.info("Click Mobile link");
         driver.findElement(mobileLink).click();
         return new ProductListingPage(driver);
     }
 
-    @Step
+    @Step("Click TV link")
     public ProductListingPage clickTVLink() {
         log.info("Click TV link");
         driver.findElement(tvXpath).click();
         return new ProductListingPage(driver);
     }
 
-    @Step
+    @Step("Click My Account link")
     public CustomerLoginPage clickMyAccountLink() {
         log.info("Click My Account link");
         driver.findElement(accountCssSelector).click();
@@ -41,7 +41,7 @@ public class PandaHomePage extends CommonPageElements {
         return new CustomerLoginPage(driver);
     }
 
-    @Step
+    @Step("Click Advance Search Link")
     public AdvanceSearchPage clickAdvanceSearchLink() {
         log.info("Click Advance Search Link");
         driver.findElement(advanceSearchLink).click();

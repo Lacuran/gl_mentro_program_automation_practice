@@ -18,21 +18,21 @@ public class MyWishlistPage extends CommonPageElements {
         super(driver);
     }
 
-    @Step
+    @Step("Click Share Wishlist link")
     public ShareWishlistPage clickShareWishListLink() {
         log.info("Click Share Wishlist link");
         driver.findElement(shareWishListButton).click();
         return new ShareWishlistPage(driver);
     }
 
-    @Step
+    @Step("Click Add To Cart button")
     public ShoppingCartPage addToCartButton() {
         log.info("Click Add To Cart button");
         driver.findElement(addToCartCssSelector).click();
         return new ShoppingCartPage(driver);
     }
 
-    @Step
+    @Step("Assert Success Sharing Wishlist")
     public MyWishlistPage assertSuccessSharing(String expectedSuccessSharingMsg, String assertionErrorMSG) {
         log.info("Assert Success Sharing Wishlist");
         assertEquals(driver.findElement(successMsgLocator).getText(), expectedSuccessSharingMsg

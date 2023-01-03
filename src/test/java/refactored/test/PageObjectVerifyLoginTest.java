@@ -69,7 +69,7 @@ public class PageObjectVerifyLoginTest extends BaseTestSetup {
 
         log.info("Preparing account information");
         setUp();
-        PandaHomePage homePage = new PandaHomePage(driver1);
+        PandaHomePage homePage = new PandaHomePage(driver);
         MyAccountPage myAccountPage = homePage.clickMyAccountLink()
                 .fillingLoginData(user1)
                 .clickLoginButton()

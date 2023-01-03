@@ -19,20 +19,20 @@ public class CommonPageElements {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Getting Home Page title")
     public String getPageTitle() {
         log.info("Getting Home Page title");
         return driver.getTitle();
     }
 
-    @Step
+    @Step("Add LG LCD TV to Wishlist")
     public MyWishlistPage addToWishlist() {
         log.info("Add LG LCD TV to Wishlist");
         driver.findElement(addToWishListButton).click();
         return new MyWishlistPage(driver);
     }
 
-    @Step
+    @Step("Opening Cart")
     public ShoppingCartPage openCart() {
         log.info("Opening Cart");
         driver.findElement(accountButton).click();

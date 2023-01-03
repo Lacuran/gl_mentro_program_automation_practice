@@ -17,7 +17,7 @@ public class PageObjectVerifyPurchaseOfAProductTest extends BaseTestSetup {
     public void beforeTestSetUp() {
 
         setUp();
-        PandaHomePage homePage = new PandaHomePage(driver1);
+        PandaHomePage homePage = new PandaHomePage(driver);
         homePage.clickMyAccountLink()
                 .fillingLoginData(user)
                 .clickLoginButton()

@@ -22,7 +22,7 @@ public class AdvanceSearchPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Entering Prince Range")
     public AdvanceSearchPage enterPriceRange(String startPrice, String endPrice) {
         log.info("Entering Prince Range");
         driver.findElement(priceStartingRange).sendKeys(startPrice);
@@ -30,21 +30,21 @@ public class AdvanceSearchPage {
         return this;
     }
 
-    @Step
+    @Step("Click search button")
     public AdvanceSearchPage clickSearchButton() {
         log.info("Click search button");
         driver.findElement(searchButton).click();
         return this;
     }
 
-    @Step
+    @Step("Click Advance Search Link")
     public AdvanceSearchPage clickAdvanceSearchLink() {
         log.info("Click Advance Search Link");
         driver.findElement(advanceSearchLink).click();
         return this;
     }
 
-    @Step
+    @Step("Getting search result")
     public AdvanceSearchPage getSearchResult() {
         log.info("Getting search result");
         List<String> searchResult = driver.findElements(productNameXPath).stream()

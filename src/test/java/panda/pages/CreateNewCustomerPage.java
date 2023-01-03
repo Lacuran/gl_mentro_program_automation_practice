@@ -24,21 +24,21 @@ public class CreateNewCustomerPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Filling User information")
     public CreateNewCustomerPage fillUserInformation(User user) {
         log.info("Filling User information");
         fillRegistrationData(user);
         return this;
     }
 
-    @Step
+    @Step("Click register button")
     public MyAccountPage clickRegisterButton() {
         log.info("Click register button");
         driver.findElement(submitAccButton).click();
         return new MyAccountPage(driver);
     }
 
-    @Step
+    @Step("Filling form")
     private void fillRegistrationData(User user) {
         String[] registrationData = {user.getFirstName(), user.getMiddleName(), user.getLastName()
                 , user.getEmail(), user.getPassword(), user.getConfirmation()};

@@ -21,14 +21,14 @@ public class CustomerLoginPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Click Create Account button")
     public CreateNewCustomerPage clickCreateAccountPage() {
         log.info("Click Create Account button");
         driver.findElement(createAccButton).click();
         return new CreateNewCustomerPage(driver);
     }
 
-    @Step
+    @Step("Filling Data login")
     public CustomerLoginPage fillingLoginData(User user) {
         log.info("Filling Data login");
         String[] loginData = {user.getEmail(), user.getPassword()};
@@ -37,7 +37,7 @@ public class CustomerLoginPage {
         return this;
     }
 
-    @Step
+    @Step("Click login button")
     public MyAccountPage clickLoginButton() {
         log.info("Click login button");
         driver.findElement(loginButton).click();

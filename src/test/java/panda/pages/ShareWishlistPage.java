@@ -17,7 +17,7 @@ public class ShareWishlistPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Sharing My Wishlist using User class")
     public MyWishlistPage shareWishlist(User user) {
         log.info("Sharing My Wishlist using User class");
         driver.findElement(shareWishlistEmail).sendKeys(user.getEmail());
@@ -25,7 +25,7 @@ public class ShareWishlistPage {
         return new MyWishlistPage(driver);
     }
 
-    @Step
+    @Step("Sharing My Wishlist using provided email")
     public MyWishlistPage shareWishlist(String email) {
         log.info("Sharing My Wishlist using provided email");
         driver.findElement(shareWishlistEmail).sendKeys(email);

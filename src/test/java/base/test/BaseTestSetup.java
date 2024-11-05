@@ -4,16 +4,19 @@ import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.events.WebDriverListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utility.MyDriverListener;
 
+import java.util.Arrays;
+
 @Slf4j
 public class BaseTestSetup {
 
-    final String URL = "http://live.techpanda.org/";
+    final String URL = "https://live.techpanda.org/";
     public WebDriver driver1;
     public WebDriverListener listener;
     public WebDriver driver;
@@ -21,7 +24,16 @@ public class BaseTestSetup {
     @BeforeMethod
     @Step("WebDriver Initialization")
     public void setUp() {
-        driver1 = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.setAcceptInsecureCerts(true);
+        options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
+        options.addArguments("--start-maximized");
+        options.addArguments("--disable-web-security");
+        options.addArguments("--allow-running-insecure-content");
+        options.addArguments("--ignore-certificate-errors");
+
+
+        driver1 = new ChromeDriver(options);
         listener = new MyDriverListener(driver1);
         driver = new EventFiringDecorator<>(listener).decorate(driver1);
 

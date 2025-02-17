@@ -31,6 +31,7 @@ public class BaseTestSetup {
         options.addArguments("--disable-web-security");
         options.addArguments("--allow-running-insecure-content");
         options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--remote-allow-origins=*");
 
 
         driver1 = new ChromeDriver(options);
